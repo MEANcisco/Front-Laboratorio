@@ -1,0 +1,79 @@
+<!-- Profile Sidebar -->
+<div class="profile-sidebar theiaStickySidebar">
+
+    <div class="dashboard-widget">
+        <nav class="dashboard-menu">
+            <ul>
+                <li (click)="navigate('Dashboard')" [class.active]="name === 'Dashboard' || page === 'dashboard'">
+                    <a [routerLink]="'dashboard'">
+                        <i class="fas fa-columns"></i>
+                        <span>Tablero</span>
+                    </a>
+                </li>
+                <li (click)="navigate('Appointments')"
+                    [class.active]="name === 'Appointments' || page === 'appointment'">
+                    <a [routerLink]="'appointment'">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Reservas</span>
+                    </a>
+                </li>
+                <li (click)="navigate('My Patients')" [class.active]="name === 'My Patients' || page === 'patients'">
+                    <a [routerLink]="'patients'">
+                        <i class="fas fa-user-injured"></i>
+                        <span>Pacientes</span>
+                    </a>
+                </li>
+                <li (click)="navigate('Schedule Timings')"
+                    [class.active]="name === 'Schedule Timings' || page === 'scheduletiming'">
+                    <a [routerLink]="'scheduletiming'">
+                        <i class="fas fa-hourglass-start"></i>
+                        <span>Administrar Tiempos</span>
+                    </a>
+                </li>
+                <!-- <li  [class.active]="name === 'Invoices' || page === 'invoice'" (click)="navigate('Invoices')">
+                    <a   [routerLink]="'invoice'">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Invoices</span>
+                    </a>
+                </li> -->
+                <!-- <li  [class.active]="name === 'Reviews'  || page === 'reviews'" (click)="navigate('Reviews')">
+                    <a   [routerLink]="'reviews'">
+                        <i class="fas fa-star"></i>
+                        <span>Reviews</span>
+                    </a>
+                </li> -->
+                <li (click)="navigate('Message')" [class.active]="name === 'Message' || page === 'message'">
+                    <a [routerLink]="'message'">
+                        <i class="fas fa-comments"></i>
+                        <span>Mensajes</span>
+                        <small class="unread-msg">23</small>
+                    </a>
+                </li>
+                <!-- <li  [class.active]="name === 'Profile Settings' || page === 'settings'" (click)="navigate('Profile Settings')" >
+                    <a  [routerLink]="'settings'">
+                        <i class="fas fa-user-cog"></i>
+                        <span>Profile Settings</span>
+                    </a>
+                </li> -->
+                <li (click)="navigate('Social Media')" [class.active]="name === 'Social Media'">
+                    <a [routerLink]="'social-media'">
+                        <i class="fas fa-share-alt"></i>
+                        <span>Redes Sociales</span>
+                    </a>
+                </li>
+                <!-- <li [class.active]="name === 'Change Password'" (click)="navigate('Change Password')">
+                    <a [routerLink]="'/change-password'">
+                        <i class="fas fa-lock"></i>
+                        <span>Change Password</span>
+                    </a>
+                </li> -->
+                <li>
+                    <a (click)="logout()" style="cursor: pointer;">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Salir</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

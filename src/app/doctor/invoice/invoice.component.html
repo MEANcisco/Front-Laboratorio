@@ -1,0 +1,48 @@
+<div class="card card-table">
+    <div class="card-body">
+        <!-- Invoice Table -->
+        <div class="table-responsive">
+            <table class="table table-hover table-center mb-0">
+                <thead>
+                <tr>
+                    <th>Invoice No</th>
+                    <th>Patient</th>
+                    <th>Amount</th>
+                    <th>Paid On</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let invoice of invoices">
+                    <td>
+                        <a [routerLink]="'/invoice-details'">{{invoice.invoiceNumber}}</a>
+                    </td>
+                    <td>
+                        <h2 class="table-avatar">
+                            <a class="avatar avatar-sm mr-2">
+                                <img [src]="invoice.profile" alt="User Image" class="avatar-img rounded-circle">
+                            </a>
+                            <a [routerLink]="'/patient-profile'">{{invoice.patient_name}}
+                                <span>{{invoice.patient_id}}</span></a>
+                        </h2>
+                    </td>
+                    <td>{{invoice.total_amount}}</td>
+                    <td>{{invoice.date | date : 'dd MMM yyyy'}}</td>
+                    <td class="text-right">
+                        <div class="table-action">
+                            <a [routerLink]="'/invoice-details'" class="btn btn-sm bg-info-light">
+                                <i class="far fa-eye"></i> View
+                            </a>
+                            <a class="btn btn-sm bg-primary-light" href="javascript:void(0);">
+                                <i class="fas fa-print"></i> Print
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /Invoice Table -->
+    </div>
+</div>

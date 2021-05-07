@@ -1,0 +1,229 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/'">Home</a></li>
+                        <li aria-current="page" class="breadcrumb-item active">Blog</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Blog Details</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="blog-view">
+                    <div *ngIf="blogdetails" class="blog blog-single-post">
+                        <div class="blog-image">
+                            <a href="javascript:void(0);"><img *ngIf="blogdetails.img" class="img-fluid"
+                                                               src="{{blogdetails.img}}"></a>
+                        </div>
+                        <h3 class="blog-title">{{blogdetails.title}}</h3>
+                        <div class="blog-info clearfix">
+                            <div class="post-left">
+                                <ul>
+                                    <li>
+                                        <div class="post-author">
+                                            <a [routerLink]="'/patients/doctor-profile'"><img
+                                                    *ngIf="blogdetails.doctor_pic" alt="Post Author"
+                                                    src="{{blogdetails.doctor_pic}}"> <span>{{blogdetails.doctor_name}}</span></a>
+                                        </div>
+                                    </li>
+                                    <li *ngIf="blogdetails.createdAt"><i
+                                            class="far fa-clock"></i>{{blogdetails.createdAt | date: "d MMM yyyy"}}</li>
+                                    <li *ngIf="blogdetails.comments"><i
+                                            class="far fa-comments"></i>{{blogdetails.comments}} Comments
+                                    </li>
+                                    <li *ngIf="blogdetails.type"><i class="fa fa-tags"></i>{{blogdetails.type}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <p>{{blogdetails.description}}</p>
+
+                        </div>
+                    </div>
+
+                    <div class="card blog-share clearfix">
+                        <div class="card-header">
+                            <h4 class="card-title">Share the post</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="social-share">
+                                <li><a title="Facebook"><i class="fab fa-facebook"></i></a></li>
+                                <li><a title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                <li><a title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                <li><a title="Google Plus"><i class="fab fa-google-plus"></i></a></li>
+                                <li><a title="Youtube"><i class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card blog-comments clearfix">
+                        <div class="card-header">
+                            <h4 class="card-title">Comments ()</h4>
+                        </div>
+                        <div class="card-body pb-0">
+                            <ul class="comments-list">
+                                <li *ngFor="let comment of comments">
+                                    <div class="comment">
+                                        <div class="comment-author">
+                                            <img alt="" class="avatar" src="assets/img/patients/patient.jpg">
+                                        </div>
+                                        <div class="comment-block">
+													<span class="comment-by">
+														<span class="blog-author-name">{{comment.name}}</span>
+													</span>
+                                            <p>{{comment.comment}}</p>
+                                            <p class="blog-date">Dec 6, 2017</p>
+                                            <!-- <a class="comment-btn" href="javascript:void(0)">
+                                                <i class="fas fa-reply"></i> Reply
+                                            </a> -->
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card new-comment clearfix">
+                        <div class="card-header">
+                            <h4 class="card-title">Leave Comment</h4>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label>Name <span class="text-danger">*</span></label>
+                                    <input [(ngModel)]="name" class="form-control" name="name" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Your Email Address <span class="text-danger">*</span></label>
+                                    <input [(ngModel)]="email" class="form-control" name="email" type="email">
+                                </div>
+                                <div class="form-group">
+                                    <label>Comments <span class="text-danger">*</span></label>
+                                    <textarea [(ngModel)]="usercomment" class="form-control" name="usercomment"
+                                              rows="4"></textarea>
+                                </div>
+                                <div class="submit-section">
+                                    <button (click)="comment()" class="btn btn-primary submit-btn" type="submit">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Blog Sidebar -->
+            <div class="col-lg-4 col-md-12 sidebar-right theiaStickySidebar">
+
+                <!-- Search -->
+                <div class="card search-widget">
+                    <div class="card-body">
+                        <form class="search-form">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Search..." type="text">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /Search -->
+
+                <!-- Latest Posts -->
+                <div class="card post-widget">
+                    <div class="card-header">
+                        <h4 class="card-title">Latest Posts</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="latest-posts">
+                            <li *ngFor="let blog of blogs | slice:0:5">
+                                <div class="post-thumb">
+                                    <a (click)="navigate(blog)" style="cursor: pointer;">
+                                        <img [src]="blog.img" alt="" class="img-fluid">
+                                    </a>
+                                </div>
+                                <div class="post-info">
+                                    <h4>
+                                        <a (click)="navigate(blog)" style="cursor: pointer;">{{blog.title}}</a>
+                                    </h4>
+                                    <p>{{blog.createdAt | date : "dd MMM yyyy"}}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /Latest Posts -->
+
+                <!-- Categories -->
+                <div class="card category-widget">
+                    <div class="card-header">
+                        <h4 class="card-title">Blog Categories</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="categories">
+                            <li><a href="javascript:void(0)">Cardiology <span>(62)</span></a></li>
+                            <li><a href="javascript:void(0)">Health Care <span>(27)</span></a></li>
+                            <li><a href="javascript:void(0)">Nutritions <span>(41)</span></a></li>
+                            <li><a href="javascript:void(0)">Health Tips <span>(16)</span></a></li>
+                            <li><a href="javascript:void(0)">Medical Research <span>(55)</span></a></li>
+                            <li><a href="javascript:void(0)">Health Treatment <span>(07)</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /Categories -->
+
+                <!-- Tags -->
+                <div class="card tags-widget">
+                    <div class="card-header">
+                        <h4 class="card-title">Tags</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="tags">
+                            <li><a class="tag" href="javascript:void(0)">Children</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Disease</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Appointment</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Booking</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Kids</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Health</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Family</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Tips</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Shedule</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Treatment</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Dr</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Clinic</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Online</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Health Care</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Consulting</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Doctors</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Neurology</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Dentists</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Specialist</a></li>
+                            <li><a class="tag" href="javascript:void(0)">Laboratorio Alemán</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /Tags -->
+
+            </div>
+            <!-- /Blog Sidebar -->
+
+        </div>
+    </div>
+
+</div>
+<!-- /Page Content -->

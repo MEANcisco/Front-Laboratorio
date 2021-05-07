@@ -1,0 +1,230 @@
+<!--/Top Header -->
+<header [ngClass]="(base=='')?'header min-header':'header'">
+    <!-- <header [ngClass]="{'min-header': base === '', 'header':base !== '' }"> -->
+
+    <div [ngClass]="(base=='')?'top-header min':'top-header'">
+        <!-- <div class="top-header min"> -->
+        <div class="container-fluid">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-12 col-md-6">
+                    <div class="left">
+                        <ul>
+                            <li><span>Contacto : +56 75 232 3749</span></li>
+                            <li><span>Dirección : Manuel Montt 378, Curicó</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="right">
+                        <ul>
+                            <li>
+                                <div class="social-icon mr-3">
+                                    <ul>
+                                        <li>
+                                            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="dropdown language-select">
+                                <span aria-expanded="false" aria-haspopup="true" class="dropdown-toggle"
+                                      data-toggle="dropdown" id="language-dropdown" role="button"> Español</span>
+                                <div aria-labelledby="language-dropdown" class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Inglés</a>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg header-nav">
+        <div class="navbar-header">
+            <a href="javascript:void(0);" id="mobile_btn">
+                    <span class="bar-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+            </a>
+            <a (click)="home()" *ngIf="logo" class="navbar-brand logo">
+                <img alt="Logo" class="img-fluid" src="assets/img/logo-white.png">
+            </a>
+            <a (click)="home()" *ngIf="!logo" class="navbar-brand logo">
+                <img alt="Logo" class="img-fluid" src="assets/img/logo.png">
+            </a>
+            <!--  <a (click)!="home()" class="navbar-brand logo">
+                 <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+             </a> -->
+        </div>
+        <div class="main-menu-wrapper">
+            <div class="menu-header">
+                <a [routerLink]="'/'" class="menu-logo">
+                    <img alt="Logo" class="img-fluid" src="assets/img/logo.png">
+                </a>
+                <a class="menu-close" href="javascript:void(0);" id="menu_close">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            <ul class="main-nav">
+                <li [class.active]="base === ''">
+                    <a [routerLink]="''">Inicio</a>
+                </li>
+
+            <!--    <li (click)="addStyle('doctor')"
+                    [class.active]="base === 'doctor' || (base === 'patients' && page === 'patient-profile')" class="has-submenu" style="cursor: pointer;">
+                    <a>Doctors <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu" id="doctor">
+                        <li [class.active]="base === 'doctor' && page === 'dashboard'"><a
+                                [routerLink]="'doctor/dashboard'">Dashboard</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'appointment'"><a
+                                [routerLink]="'doctor/appointment'">Appointments</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'scheduletiming'"><a
+                                [routerLink]="'doctor/scheduletiming'">Schedule Timing</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'patients'"><a
+                                [routerLink]="'doctor/patients'">Patients List</a></li>
+                        <li [class.active]="base === 'patients' && page === 'patient-profile'"><a
+                                [routerLink]="'patients/patient-profile'">Patients Profile</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'message'"><a [routerLink]="'doctor/message'">Chat</a>
+                        </li>
+                        <li [class.active]="base === 'doctor' && page === 'invoice'"><a [routerLink]="'doctor/invoice'">Invoices</a>
+                        </li>
+                        <li [class.active]="base === 'doctor' && page === 'settings'"><a
+                                [routerLink]="'doctor/settings'">Profile Settings</a></li>
+                        <li [class.active]="base === 'doctor' && page === 'reviews'"><a [routerLink]="'doctor/reviews'">Reviews</a>
+                        </li>
+                        <li [class.active]="base === 'Register'"><a [routerLink]="'Register'">Doctor Register</a></li>
+                    </ul>
+                </li>-->
+                <li (click)="addStyle('patient')" [class.active]="base === 'map-grid'" class="has-submenu"
+                    routerLinkActive="active">
+                    <a>Zona pacientes <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu" id="patient">
+                        <li [class.active]="base === 'map-grid'"><a (click)="mapGrid()">Guía Médica</a></li>
+                 <!--       <li [class.active]="base === 'patients' && page === 'search-doctor'"><a
+                                [routerLink]="'patients/search-doctor'">Buscar Doctores</a></li>-->
+                     <!--   <li [class.active]="base === 'patients' && page === 'doctor-profile'"><a
+                                [routerLink]="'patients/doctor-profile'">Doctor Profile</a></li>-->
+                        <li [class.active]="base === 'patients' && page === 'booking'"><a
+                                [routerLink]="'patients/booking'">Agendar Examen</a></li>
+                        <li [class.active]="base === 'patients' && page === 'booking'"><a
+                                [routerLink]="'patients/examenes'">Exámenes</a></li>
+                     <!--   <li [class.active]="base === 'patients' && page === 'favourites'"><a
+                                [routerLink]="'patients/favourites'">Favourites</a></li>-->
+                   <!--     <li [class.active]="base === 'patients' && page === 'checkout'"><a
+                                [routerLink]="'patients/checkout'">Checkout</a></li>-->
+                <!--        <li [class.active]="base === 'patients' && page === 'success'"><a
+                                [routerLink]="'patients/success'">Booking Success</a></li>-->
+                     <!--   <li *ngIf="authS.currentUser" [class.active]="base === 'patients' && page === 'dashboard'"><a
+                                [routerLink]="'patients/dashboard'"> Patient Dashboard</a></li>
+
+                        <li [class.active]="base === 'patients' && page === 'message'"><a
+                                [routerLink]="'patients/message'">Chat</a></li>
+                        <li [class.active]="base === 'patients' && page === 'settings'"><a
+                                [routerLink]="'patients/settings'">Profile Settings</a></li>
+                        <li [class.active]="base === 'change-password'"><a [routerLink]="'change-password'">Change
+                            Password</a></li>-->
+                    </ul>
+                </li>
+
+    <!--            <li (click)="addStyle('pages')"
+                    [class.active]="base === 'voice-call' || base === 'video-call' || base === 'calender' || base === 'blank' || base === 'login-page'
+                    || base === 'Register' || base === 'forgot-password' || (base === 'patients' && page === 'search-doctor')
+                    || (base === 'patients' && page === 'component') || (base === 'doctor' && page === 'invoice') || base === 'invoice-details'" class="has-submenu">
+                    <a href="javascript:void(0)">Pages <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu" id="pages">
+                        <li [class.active]="base === 'voice-call'"><a [routerLink]="'voice-call'">Voice Call</a></li>
+                        <li [class.active]="base === 'video-call'"><a [routerLink]="'video-call'">Video Call</a></li>
+                        <li [class.active]="base === 'patients' && page === 'search-doctor'"><a
+                                [routerLink]="'patients/search-doctor'">Search Doctors</a></li>
+                        <li [class.active]="base === 'calender'"><a [routerLink]="'calender'">Calendar</a></li>
+                        <li [class.active]="base === 'patients' && page === 'component'"><a
+                                [routerLink]="'patients/component'">Components</a></li>
+                        <li [class.active]="(base === 'doctor' && page === 'invoice') || base === 'invoice-details'"
+                            class="has-submenu">
+                            <a href="javascript:void(0)">Invoices</a>
+                            <ul class="submenu">
+                                <li [class.active]="base === 'doctor' && page === 'invoice'"><a
+                                        [routerLink]="'doctor/invoice'">Invoices</a></li>
+                                <li [class.active]="base === 'invoice-details'"><a [routerLink]="'invoice-details'">Invoice
+                                    View</a></li>
+                            </ul>
+                        </li>
+                        <li [class.active]="base === 'blank'"><a [routerLink]="'blank'">Starter Page</a></li>
+                        <li [class.active]="base === 'login-page'"><a [routerLink]="'login-page'">Login</a></li>
+                        <li [class.active]="base === 'Register'"><a [routerLink]="'Register'">Register</a></li>
+                        <li [class.active]="base === 'forgot-password'"><a [routerLink]="'forgot-password'">Forgot
+                            Password</a></li>
+                    </ul>
+                </li>-->
+                <li (click)="addStyle('blog')" [class.active]="base === 'blog' || base === 'blog-grid' || base === 'blog-details'"
+                    class="has-submenu">
+                    <a  [class.active]="base === 'blog'" [routerLink]="'blog'">Blog</a>
+                 <!--   <ul class="submenu" id="blog">
+                        <li [class.active]="base === 'blog'"><a [routerLink]="'blog'">Blog List</a></li>
+                        <li [class.active]="base === 'blog-grid'"><a [routerLink]="'blog-grid'">Blog Grid</a></li>
+                        <li [class.active]="base === 'blog-details'"><a [routerLink]="'blog-details'">Blog Details</a>
+                        </li>
+                    </ul>-->
+                </li>
+                <li *ngIf="authS.isAdmin" [class.active]="base === 'admin'" class="has-submenu">
+                    <a (click)="navigate('Admin')">Admin</a>
+                </li>
+                <li *ngIf="!authS.isLoggedIn" class="login-link">
+                    <a [routerLink]="'login-page'">Acceder/Registrarse</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav header-navbar-rht">
+            <li *ngIf="!this.authS.isLoggedIn" [class.active]="base === 'login-page'" class="nav-item">
+                <a [routerLink]="'login-page'" class="nav-link header-login">Acceder/Registrarse </a>
+            </li>
+            <!-- User Menu -->
+            <li *ngIf="this.authS.isLoggedIn" class="nav-item dropdown has-arrow logged-item">
+                <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="javascript:void(0)">
+                        <span class="user-img">
+                            <img alt="Darren Elder" class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg"
+                                 width="31">
+                        </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" style="right:0;left:auto;">
+                    <div class="user-header">
+                        <div class="avatar avatar-sm">
+                            <img alt="User Image" class="avatar-img rounded-circle"
+                                 src="assets/img/doctors/doctor-thumb-02.jpg">
+                        </div>
+                        <div class="user-text">
+                            <h6>{{this.authS.currentUser?.nombre}}</h6>
+                            <p *ngIf="!this.authS?.isUser" class="text-muted mb-0">Doctor</p>
+                            <p *ngIf="this.authS?.isUser" class="text-muted mb-0">Paciente</p>
+                        </div>
+                    </div>
+                    <a *ngIf="!this.authS.isUser" [routerLink]="'/doctor/dashboard'" class="dropdown-item"
+                       style="cursor: pointer;">Panel de Control</a>
+                    <a *ngIf="!this.authS.isUser" [routerLink]="'/doctor/settings'" class="dropdown-item"
+                       style="cursor: pointer;">Perfil</a>
+                    <a *ngIf="this.authS.isUser" [routerLink]="'/patients/dashboard'" class="dropdown-item"
+                       style="cursor: pointer;">Panel de Control</a>
+                    <a *ngIf="this.authS.isUser" [routerLink]="'/patients/settings'" class="dropdown-item"
+                       style="cursor: pointer;">Perfil</a>
+                    <a (click)="logout()" class="dropdown-item" style="cursor: pointer;">Cerrar Sesión</a>
+                </div>
+            </li>
+            <!-- /User Menu -->
+
+        </ul>
+
+
+    </nav>
+</header>

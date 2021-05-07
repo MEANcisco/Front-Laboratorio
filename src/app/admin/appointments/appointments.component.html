@@ -1,0 +1,65 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Reservas</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Reservas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Recent Orders -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <table [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-hover table-center mb-0"
+                                   datatable>
+                                <thead>
+                                <tr>
+                                    <th>Examen</th>
+                                    <th>Fecha creación</th>
+                                    <th>Paciente</th>
+                                    <th>Hora reserva</th>
+                                    <th>Estado</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor=" let item of table">
+                                    <td >
+                                        <h2 class="table-avatar">
+                                            <a>{{item.examen.examen}}</a>
+                                        </h2>
+                                    </td>
+                                    <td>{{item.created_at | date: 'short' : '+0'}}</td>
+                                    <td>
+                                        <h2 class="table-avatar">
+
+                                            <a [routerLink]="'/admin/doc-profile'" (click)="setUsr(item.users_permissions_user)">{{item.users_permissions_user.nombre}}  {{item.users_permissions_user.apellido}} </a>
+                                        </h2>
+                                    </td>
+                                    <td>{{item.appoint | date: 'short' : '+0'}}</td>
+                                    <td>
+                                        <div class="status-toggle">
+                                            <input checked class="check" id="status_1" type="checkbox">
+                                            <label class="checktoggle" for="status_1">checkbox</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Recent Orders -->
+            </div>
+        </div>
+    </div>
+</div>

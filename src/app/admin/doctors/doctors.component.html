@@ -1,0 +1,69 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Lista de Doctores</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
+                        <li class="breadcrumb-item active">Doctor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div *ngIf="table" class="table-responsive">
+                            <table [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="datatable table table-hover table-center mb-0"
+                                   datatable>
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Especialidad</th>
+                                    <th>Telefono</th>
+                                    <th>Direccion</th>
+                                    <th>Estado</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let doctor of table">
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a class="avatar avatar-sm mr-2">
+                                                <img *ngIf="doctor.profile" [src]="doctor.profile"
+                                                                                  alt="User Image"
+                                                                                  class="avatar-img rounded-circle"></a>
+                                            <a>{{doctor.nombre}}</a>
+                                        </h2>
+                                    </td>
+                                    <td>{{doctor.especialidad}}</td>
+
+                                    <td>{{doctor.telefono}}</td>
+
+                                    <td>{{doctor.direccion}}</td>
+
+                                    <td>
+                                        <div class="status-toggle">
+                                            <input checked class="check" id="status_1" type="checkbox">
+                                            <label class="checktoggle" for="status_1">checkbox</label>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

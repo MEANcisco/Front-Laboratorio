@@ -1,0 +1,103 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Reviews</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Reviews</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="datatable table table-hover table-center mb-0"
+                                   datatable>
+                                <thead>
+                                <tr>
+                                    <th>Patient Name</th>
+                                    <th>Doctor Name</th>
+                                    <th>Ratings</th>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th class="text-right">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let review of reviews">
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a class="avatar avatar-sm mr-2"><img [src]="review.patient_pic"
+                                                                                  alt="User Image"
+                                                                                  class="avatar-img rounded-circle"></a>
+                                            <a>{{review.patient_name}} </a>
+                                        </h2>
+                                    </td>
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a [routerLink]="'doc-profile'" class="avatar avatar-sm mr-2"><img
+                                                    [src]="review.doctor_pic" alt="User Image"
+                                                    class="avatar-img rounded-circle"></a>
+                                            <a>{{review.doctor_name}}</a>
+                                        </h2>
+                                    </td>
+
+                                    <td>
+                                        <i class="fe fe-star text-warning"></i>
+                                        <i class="fe fe-star text-warning"></i>
+                                        <i class="fe fe-star text-warning"></i>
+                                        <i class="fe fe-star text-warning"></i>
+                                        <i class="fe fe-star-o text-secondary"></i>
+                                    </td>
+
+                                    <td>
+                                        {{review.description}}
+                                    </td>
+                                    <td>{{review.date | date : "dd MMM yyyy hh:mm a"}}</td>
+                                    <td class="text-right">
+                                        <div class="actions">
+                                            <a (click)="deleteModal(delete,review)" class="btn btn-sm bg-danger-light"
+                                               data-toggle="modal">
+                                                <i class="fe fe-trash"></i> Delete
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #delete>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Delete</h4>
+        <button (click)="modalRef.hide()" aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center">
+        Are you sure want to delete this Review?
+        <div style="margin-top:25px">
+            <button (click)="deleteReview()" (mouseover)="btnColor()" class="btn btn-default" id="btn-yes"
+                    type="button">Yes
+            </button>
+            <button (click)="decline()" (mouseover)="btnColorNo()" class="btn btn-primary" id="btn-no" type="button">
+                No
+            </button>
+        </div>
+    </div>
+</ng-template>

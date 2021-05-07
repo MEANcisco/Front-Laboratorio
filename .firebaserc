@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "laboratorio-aleman"
+  },
+  "targets": {
+    "laboratorio-aleman": {
+      "hosting": {
+        "doccur": [
+          "laboratorio-aleman"
+        ]
+      }
+    }
+  }
+}

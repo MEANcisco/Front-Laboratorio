@@ -1,0 +1,48 @@
+<div *ngIf="favourites" class="row row-grid">
+    <div *ngFor="let fav of favourites" class="col-md-6 col-lg-4 col-xl-3">
+        <div class="profile-widget">
+            <div class="doc-img">
+                <a [queryParams]="{id: fav.id}" [routerLink]="'/patients/doctor-profile'">
+                    <img [src]="fav.profile" alt="User Image" class="img-fluid">
+                </a>
+                <a (click)="unfav(fav)" class="fav-btn favorite">
+                    <i class="far fa-bookmark" id="fav-btn"></i>
+                </a>
+            </div>
+            <div class="pro-content">
+                <h3 class="title">
+                    <a [queryParams]="{id: fav.id}" [routerLink]="'/patients/doctor-profile'">{{fav.doctor_name}}</a>
+                    <i class="fas fa-check-circle verified"></i>
+                </h3>
+                <p class="speciality">{{fav.Education}}</p>
+                <div class="rating">
+                    <i class="fas fa-star filled"></i>
+                    <i class="fas fa-star filled"></i>
+                    <i class="fas fa-star filled"></i>
+                    <i class="fas fa-star filled"></i>
+                    <i class="fas fa-star filled"></i>
+                    <span class="d-inline-block average-rating">(17)</span>
+                </div>
+                <ul class="available-info">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i> {{fav.location}}
+                    </li>
+                    <li>
+                        <i class="far fa-clock"></i> Disponible{{fav.Available | date : "E, dd MMM"}}
+                    </li>
+                    <li>
+
+                    </li>
+                </ul>
+                <div class="row row-sm">
+                    <div class="col-6">
+                        <a [queryParams]="{id: fav.id}" [routerLink]="'/patients/doctor-profile'" class="btn view-btn">Ver Perfil</a>
+                    </div>
+                    <div class="col-6">
+                        <a [queryParams]="{id: fav.id}" [routerLink]="'/patients/booking'" class="btn book-btn">Agendar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

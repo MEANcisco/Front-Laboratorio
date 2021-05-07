@@ -1,0 +1,235 @@
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card dash-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-4">
+                            <div class="dash-widget dct-border-rht">
+                                <div class="circle-bar circle-bar1">
+                                    <div class="circle-graph1" data-percent="75">
+                                        <img alt="patient" class="img-fluid" src="assets/img/icon-01.png">
+                                    </div>
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h6>Pacientes Totales</h6>
+                                    <h3>1500</h3>
+                                    <p class="text-muted">Hasta Hoy</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-lg-4">
+                            <div class="dash-widget dct-border-rht">
+                                <div class="circle-bar circle-bar2">
+                                    <div class="circle-graph2" data-percent="65">
+                                        <img alt="Patient" class="img-fluid" src="assets/img/icon-02.png">
+                                    </div>
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h6>Pacientes Hoy</h6>
+                                    <h3>160</h3>
+                                    <p class="text-muted">06, Nov 2019</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-lg-4">
+                            <div class="dash-widget">
+                                <div class="circle-bar circle-bar3">
+                                    <div class="circle-graph3" data-percent="50">
+                                        <img alt="Patient" class="img-fluid" src="assets/img/icon-03.png">
+                                    </div>
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h6>Reservas</h6>
+                                    <h3>85</h3>
+                                    <p class="text-muted">06, Apr 2019</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-4">Reservas de Pacientes</h4>
+            <div class="appointment-tab">
+
+                <!-- Appointment Tab -->
+                <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+                    <li class="nav-item">
+                        <a (click)="search('upcomming')" [ngClass]="{ 'active':activeTab==='upcomming'}" class="nav-link active"
+                           data-toggle="tab" href="#upcoming">Proximos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="result('today')" [ngClass]="{ 'active':activeTab==='today'}" class="nav-link"
+                           data-toggle="tab" href="#today">Hoy</a>
+                    </li>
+                </ul>
+                <!-- /Appointment Tab -->
+
+                <div class="tab-content">
+
+                    <!-- Upcoming Appointment Tab -->
+                    <div [ngClass]="{ 'active':activeTab==='upcomming'}" class="tab-pane" id="upcoming">
+                        <div class="card card-table mb-0">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-center mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Fecha</th>
+                                            <th>Exámen</th>
+                                            <th>Tipo</th>
+                                            <th class="text-center">Paid Amount</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let appointment of appointments">
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a class="avatar avatar-sm mr-2"><img
+                                                            [src]="appointment?.patients?.img"
+                                                            alt="User Image" class="avatar-img rounded-circle"></a>
+                                                    <a>{{appointment?.patients?.name}}
+                                                        <span>{{appointment.patients?.key}}</span></a>
+                                                </h2>
+                                            </td>
+                                            <td>{{appointment.appointment_time | date : 'dd MMM yyyy'}}<span
+                                                    class="d-block text-info">{{appointment.appointment_time | date : 'h:mm a'}}</span>
+                                            </td>
+                                            <td>General</td>
+                                            <td>{{appointment.type}}</td>
+                                            <td class="text-center">{{appointment.amount}}</td>
+                                            <td class="text-right">
+                                                <div class="table-action">
+                                                    <a class="btn btn-sm bg-info-light" href="javascript:void(0);">
+                                                        <i class="far fa-eye"></i> Ver
+                                                    </a>
+                                                    <a (click)="openModal(template,appointment)"
+                                                       class="btn btn-sm bg-success-light">
+                                                        <i class="fas fa-check"></i> Aceptar
+                                                    </a>
+                                                    <a (click)="openModal(Declinetemplate,appointment)"
+                                                       class="btn btn-sm bg-danger-light"
+                                                       href="javascript:void(0);">
+                                                        <i class="fas fa-times"></i> Cancelar
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Upcoming Appointment Tab -->
+
+                    <!-- Today Appointment Tab -->
+                    <div [ngClass]="{ 'active':activeTab==='today'}" class="tab-pane" id="today">
+                        <div class="card card-table mb-0">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-center mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>Patient Name</th>
+                                            <th>Appt Date</th>
+                                            <th>Purpose</th>
+                                            <th>Type</th>
+                                            <th class="text-center">Paid Amount</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let appointment of appointments">
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a class="avatar avatar-sm mr-2"><img
+                                                            [src]="appointment?.patients?.img"
+                                                            alt="User Image" class="avatar-img rounded-circle"></a>
+                                                    <a>{{appointment?.patients?.name}}
+                                                        <span>{{appointment?.patients?.key}}</span></a>
+                                                </h2>
+                                            </td>
+                                            <td>{{appointment.appointment_time | date : 'dd MMM yyyy'}}<span
+                                                    class="d-block text-info">{{appointment.appointment_time | date : 'h:mm a'}}</span>
+                                            </td>
+                                            <td>General</td>
+                                            <td>{{appointment.type}}</td>
+                                            <td class="text-center">{{appointment.amount}}</td>
+                                            <td class="text-right">
+                                                <div class="table-action">
+                                                    <a class="btn btn-sm bg-info-light" href="javascript:void(0);">
+                                                        <i class="far fa-eye"></i> View
+                                                    </a>
+
+                                                    <a (click)="openModal(template,appointment)"
+                                                       class="btn btn-sm bg-success-light">
+                                                        <i class="fas fa-check"></i> Accept
+                                                    </a>
+                                                    <a (click)="openModal(Declinetemplate,appointment)"
+                                                       class="btn btn-sm bg-danger-light"
+                                                       href="javascript:void(0);">
+                                                        <i class="fas fa-times"></i> Cancel
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Today Appointment Tab -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Accept</h4>
+        <button (click)="modalRef.hide()" aria-label="Close" class="close pull-right" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center">
+        Are you sure want to accept this patient?
+        <div style="margin-top:25px">
+            <button (click)="confirm('accept')" (mouseover)="btnColor()" class="btn btn-default" id="btn-yes"
+                    type="button">Yes
+            </button>
+            <button (click)="cancel()" (mouseover)="btnColorNo()" class="btn btn-primary" id="btn-no" type="button">No
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #Declinetemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Decline</h4>
+        <button (click)="modalRef.hide()" aria-label="Close" class="close pull-right" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center">
+        Are you sure want to cancel this patient?
+        <div style="margin-top:25px">
+            <button (click)="confirm('cancel')" class="btn btn-default" type="button">Yes</button>
+            <button (click)="cancel()" class="btn btn-primary" type="button">No</button>
+        </div>
+    </div>
+</ng-template><a href=""></a>

@@ -1,0 +1,621 @@
+<!-- Home Banner -->
+<section class="section-search">
+    <div class="container">
+        <div class="banner-wrapper">
+            <div class="banner-header">
+                <p></p>
+                <h1>LABORATORIO CLINICO ALEMAN</h1>
+                <p class="small-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna Quis ipsumpsum.</p>
+                <a (click)="openelement()" class="btn-pink" style="color: azure;">Revise sus exámenes <i
+                        class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Home Banner -->
+
+<!-- Book Appointment -->
+<section class="section app-form">
+    <div class="container">
+        <div class="section-header">
+            <h6>Reserva de horas</h6>
+            <h2>Agenda tu hora para cuando mas te acomode, sin filas.</h2>
+        </div>
+        <div class="row justify-content-center">
+
+            <div class="col-md-8 col-lg-8">
+                <label > Dia</label>
+                <div class="form-group">
+                    <input [(ngModel)]="this.reqapp.exaData.day" class="form-control" placeholder="Dia" type="date">
+                </div>
+                <label > Examen</label>
+
+                <div class="form-group">
+                    <select [(ngModel)]="this.reqapp.exaData.examen" class="form-control"
+                            placeholder="selecciones su examen">
+                        <option *ngFor="let item of this.exams | async" placeholder="Hora y fecha"
+                                value="{{item.id}}">{{item.examen}}</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row justify-content-center mt-4">
+            <a (click)="NavDom()" aria-disabled="true" class="btn-pink" style="color: azure;" routerLinkActive="router-link-active">Reservar Hora<i
+                    class="fas fa-arrow-right"></i></a>
+            <a (click)="Naver()" aria-disabled="true" class="btn-pink" style="color: azure; margin-left: 5%" routerLinkActive="router-link-active">Reserva Domicilio <i
+                    class="fas fa-arrow-right"></i></a>
+                     <br>
+
+        </div>
+    </div>
+</section>
+<!-- Book Appointment -->
+
+<!-- Childcare Section -->
+<section class="section section-treatment">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="placeholder">
+                    <div class="inner-placeholder">
+                        <div class="inner-text">
+                            <h2>15+ años</h2>
+                            <h5>Experiencia</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="section-header">
+                    <h6>Nos preocupamos por ti y tu salud</h6>
+                    <h2>Mas de 15 años de trayectoria.</h2>
+                </div>
+                <div class="about-content">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
+                        ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
+                        tation ullamcorper suscipit lobortis nisl ut aliquip lobortis nisl ut aliquip lobortis nisl ut
+                        aliquip ex ea commodo consequat. Duis autem vel eum .</p>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
+                        ut laoreet dolore magna aliquam .</p>
+                    <div class="row child-care">
+                        <div class="col-md-6">
+                            <ul class="left">
+                                <li><i class="fas fa-chevron-right"></i>Modernas Instalaciones</li>
+                                <li><i class="fas fa-chevron-right"></i>Resultado rápidos y precisos</li>
+                                <li><i class="fas fa-chevron-right"></i>Texto de prueba</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="left">
+                                <li><i class="fas fa-chevron-right"></i>Texto de prueba</li>
+                                <li><i class="fas fa-chevron-right"></i>Texto de prueba</li>
+                                <li><i class="fas fa-chevron-right"></i>Texto de prueba</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Childcare Section -->
+
+<!-- Service Section -->
+<section class="section service-section">
+    <div class="container">
+        <div class="section-header">
+            <h6>Amplio rango de servicios</h6>
+            <h2>Exámenes </h2>
+        </div>
+        <div class="row service-grid">
+            <div class="col-md-6 col-lg-4 col-sm-12">
+
+                <!-- Services -->
+                <div class="service-blog">
+                    <div class="service-image">
+                        <img alt="Post Image" class="img-fluid" src="assets/img/features/ser-img1.jpg">
+                        <div class="service-content text-center">
+                            <h3 class="service-title mb-0">Adenovirus</h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Services -->
+
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12">
+
+                <!-- Services -->
+                <div class="service-blog">
+                    <div class="service-image">
+                        <img alt="Post Image" class="img-fluid" src="assets/img/features/ser-img2.jpg">
+                    </div>
+                    <div class="service-content text-center">
+                        <h3 class="service-title mb-0">Antígeno Carcino Embrionario</h3>
+                    </div>
+                </div>
+                <!-- /Services -->
+
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12">
+
+                <!-- Services -->
+                <div class="service-blog">
+                    <div class="service-image">
+                        <img alt="Post Image" class="img-fluid" src="assets/img/features/ser-img3.jpg">
+                    </div>
+                    <div class="service-content text-center">
+                        <h3 class="service-title mb-0">Bilirrubina Total</h3>
+                    </div>
+                </div>
+                <!-- /Services -->
+
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12">
+
+                <!-- Services -->
+                <div class="service-blog">
+                    <div class="service-image">
+                        <img alt="Post Image" class="img-fluid" src="assets/img/features/ser-img4.jpg">
+                    </div>
+                    <div class="service-content text-center">
+                        <h3 class="service-title mb-0">Cobre en sangre (Cupremia)</h3>
+                    </div>
+                </div>
+                <!-- /Services -->
+
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12">
+
+                <!-- Services -->
+                <div class="service-blog">
+                    <div class="service-image">
+                        <img alt="Post Image" class="img-fluid" src="assets/img/features/ser-img5.jpg">
+                    </div>
+                    <div class="service-content text-center">
+                        <h3 class="service-title mb-0">Colesterol VLDL</h3>
+                    </div>
+                </div>
+                <!-- /Services -->
+
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12">
+
+                <!-- Services -->
+                <div class="service-blog">
+                    <div class="service-image">
+                        <img alt="Post Image" class="img-fluid" src="assets/img/features/ser-img6.jpg">
+                    </div>
+                    <div class="service-content text-center">
+                        <h3 class="service-title mb-0">Helicobacter Pylori</h3>
+                    </div>
+                </div>
+                <!-- /Services -->
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Service Section -->
+
+<!-- Why Choose -->
+<section class="why-section">
+    <div class="left-section">
+        <div class="why-content">
+            <div class="section-header">
+                <h2>Por que elegirnos</h2>
+            </div>
+            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web
+                designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have
+                scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.Lorem ipsum,
+                or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. </p>
+            <p>The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled
+                parts of Cicero's De Lorem ipsum, or lipsum as it is sometimes known. The passage is attributed to an
+                unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De </p>
+            <div class="child-care">
+                <ul class="left">
+                    <li><i class="fas fa-chevron-right"></i> Atencion a domicilio</li>
+                    <li><i class="fas fa-chevron-right"></i> Texto de prueba</li>
+                    <li><i class="fas fa-chevron-right"></i> Texto de prueba</li>
+                    <li><i class="fas fa-chevron-right"></i> Texto de prueba</li>
+                    <li><i class="fas fa-chevron-right"></i> Texto de prueba</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right-section">
+    </div>
+</section>
+<!-- /Why Choose -->
+
+<!-- Count Section -->
+<section class="section-count">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-4">
+                <h2>500+</h2>
+                <p>Pacientes satisfechos</p>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <h2>100</h2>
+                <p>Valor de prueba</p>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <h2>15+</h2>
+                <p>Años de Experiencia </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Count Section -->
+
+<!-- Doctor Section -->
+<section class="section doctor-section">
+    <div class="container">
+        <div class="section-header">
+            <h6>Guía Médica</h6>
+            <h2><a [routerLink]="'patients/search-doctor'" class="member-btn">Ver todos</a></h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-3">
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <a [routerLink]="'/doctor/dashboard'">
+                            <img alt="" src="assets/img/doctors/doctor-thumb-02.jpg">
+                        </a>
+                    </div>
+                    <div class="profile-content">
+                        <h3><a [routerLink]="'/doctor/dashboard'">Marcelo Pradenas Cano</a></h3>
+                        <p>Otorrinolaringología</p>
+                        <div class="social-icon">
+                            <ul>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <a [routerLink]="'/doctor/dashboard'">
+                            <img alt="" src="assets/img/doctors/doctor-thumb-05.jpg">
+                        </a>
+                    </div>
+                    <div class="profile-content">
+                        <h3><a [routerLink]="'/doctor/dashboard'">Luis Nuñez Aguilar</a></h3>
+                        <p>Neurología</p>
+                        <div class="social-icon">
+                            <ul>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <a [routerLink]="'/doctor/dashboard'">
+                            <img alt="" src="assets/img/doctors/doctor-thumb-08.jpg">
+                        </a>
+                    </div>
+                    <div class="profile-content">
+                        <h3><a [routerLink]="'/doctor/dashboard'">Dr. Juan Bravo Figueroa</a></h3>
+                        <p>Cirugía Vascular</p>
+                        <div class="social-icon">
+                            <ul>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="profile-card active">
+                    <div class="profile-image">
+                        <a [routerLink]="'/doctor/dashboard'">
+                            <img alt="" src="assets/img/doctors/doctor-thumb-01.jpg">
+                        </a>
+                    </div>
+                    <div class="profile-content">
+                        <h3><a [routerLink]="'/doctor/dashboard'">Roberto Rodríguez Ramirez</a></h3>
+                        <p>Cirugía Vascular</p>
+                        <div class="social-icon">
+                            <ul>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Doctor Section -->
+
+<!-- Testimonial Section -->
+<section class="doctors-col section app-form">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="section-header text-center">
+                <h6>Opiniones de nuestros pacientes</h6>
+                <h2>Testimonios</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="doctor-slider slider">
+
+                    <!-- Doctor Widget -->
+                    <div class="profile-widget">
+                        <div class="test-content">
+                            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
+                                graphic or web designs. The passage is attributed.</p>
+                        </div>
+                        <div class="test-image d-flex align-items-center">
+                            <div class="test-profile">
+                                <a [routerLink]="'patients/doctor-profile'">
+                                    <img alt="User Image" class="img-fluid" src="assets/img/patients/patient.jpg">
+                                </a>
+                            </div>
+                            <div class="test-users">
+                                <h3>Morfyn Henning</h3>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                        <div class="pro-footer text-right">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <!-- /Doctor Widget -->
+
+                    <!-- Doctor Widget -->
+                    <div class="profile-widget">
+                        <div class="test-content">
+                            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
+                                graphic or web designs. The passage is attributed.</p>
+                        </div>
+                        <div class="test-image d-flex align-items-center">
+                            <div class="test-profile">
+                                <a [routerLink]="'patients/doctor-profile'">
+                                    <img alt="User Image" class="img-fluid" src="assets/img/patients/patient1.jpg">
+                                </a>
+                            </div>
+                            <div class="test-users">
+                                <h3>Paraskevi Still</h3>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                        <div class="pro-footer text-right">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <!-- /Doctor Widget -->
+
+                    <!-- Doctor Widget -->
+                    <div class="profile-widget">
+                        <div class="test-content">
+                            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
+                                graphic or web designs. The passage is attributed.</p>
+                        </div>
+                        <div class="test-image d-flex align-items-center">
+                            <div class="test-profile">
+                                <a [routerLink]="'patients/doctor-profile'">
+                                    <img alt="User Image" class="img-fluid" src="assets/img/patients/patient2.jpg">
+                                </a>
+                            </div>
+                            <div class="test-users">
+                                <h3>Lorrin Morrison</h3>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                        <div class="pro-footer text-right">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <!-- /Doctor Widget -->
+
+                    <!-- Doctor Widget -->
+                    <div class="profile-widget">
+                        <div class="test-content">
+                            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
+                                graphic or web designs. The passage is attributed.</p>
+                        </div>
+                        <div class="test-image d-flex align-items-center">
+                            <div class="test-profile">
+                                <a [routerLink]="'patients/doctor-profile'">
+                                    <img alt="User Image" class="img-fluid" src="assets/img/patients/patient3.jpg">
+                                </a>
+                            </div>
+                            <div class="test-users">
+                                <h3>Talib Knoll</h3>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                        <div class="pro-footer text-right">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <!-- /Doctor Widget -->
+
+                    <!-- Doctor Widget -->
+                    <div class="profile-widget">
+                        <div class="test-content">
+                            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
+                                graphic or web designs. The passage is attributed.</p>
+                        </div>
+                        <div class="test-image d-flex align-items-center">
+                            <div class="test-profile">
+                                <a [routerLink]="'patients/doctor-profile'">
+                                    <img alt="User Image" class="img-fluid" src="assets/img/patients/patient4.jpg">
+                                </a>
+                            </div>
+                            <div class="test-users">
+                                <h3>Wandah Marquis</h3>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                        <div class="pro-footer text-right">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <!-- /Doctor Widget -->
+
+                    <!-- Doctor Widget -->
+                    <div class="profile-widget">
+                        <div class="test-content">
+                            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
+                                graphic or web designs. The passage is attributed.</p>
+                        </div>
+                        <div class="test-image d-flex align-items-center">
+                            <div class="test-profile">
+                                <a [routerLink]="'patients/doctor-profile'">
+                                    <img alt="User Image" class="img-fluid" src="assets/img/patients/patient5.jpg">
+                                </a>
+                            </div>
+                            <div class="test-users">
+                                <h3>Roddie Rand</h3>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                        <div class="pro-footer text-right">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <!-- /Doctor Widget -->
+
+                    <!-- Doctor Widget -->
+                    <div class="profile-widget">
+                        <div class="test-content">
+                            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
+                                graphic or web designs. The passage is attributed.</p>
+                        </div>
+                        <div class="test-image d-flex align-items-center">
+                            <div class="test-profile">
+                                <a [routerLink]="'patients/doctor-profile'">
+                                    <img alt="User Image" class="img-fluid" src="assets/img/patients/patient6.jpg">
+                                </a>
+                            </div>
+                            <div class="test-users">
+                                <h3>Lauda Maclean</h3>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                        <div class="pro-footer text-right">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <!-- /Doctor Widget -->
+
+                    <!-- Doctor Widget -->
+                    <div class="profile-widget">
+                        <div class="test-content">
+                            <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
+                                graphic or web designs. The passage is attributed.</p>
+                        </div>
+                        <div class="test-image d-flex align-items-center">
+                            <div class="test-profile">
+                                <a [routerLink]="'patients/doctor-profile'">
+                                    <img alt="User Image" class="img-fluid" src="assets/img/patients/patient7.jpg">
+                                </a>
+                            </div>
+                            <div class="test-users">
+                                <h3>Emerita Kerr</h3>
+                                <p class="mb-0">Profession</p>
+                            </div>
+                        </div>
+                        <div class="pro-footer text-right">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <!-- Doctor Widget -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Testimonial Section -->
+
+<!-- Blog Section -->
+<section class="section blog-section">
+    <div class="container">
+        <div class="section-header">
+            <h6>Ultimas Noticias</h6>
+            <h2>Nuestro blog <a [routerLink]="'blog'" class="member-btn">Ver todas las entradas.</a></h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="blog-sec">
+                    <div class="blog-image">
+                        <img alt="Post Image" class="img-fluid" src="assets/img/blog/blog-01.jpg">
+                    </div>
+                    <div class="blog-content text-center">
+                        <p>23/02/2020 | Category</p>
+                        <h3>Lorem ipsum, or lipsum as it is sometimes known doloremque.</h3>
+                        <a [routerLink]="'blog-details'" class="readmore"> Ver más </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="blog-sec">
+                    <div class="blog-image">
+                        <img alt="Post Image" class="img-fluid" src="assets/img/blog/blog-02.jpg">
+                    </div>
+                    <div class="blog-content text-center">
+                        <p>11/03/2020 | Category</p>
+                        <h3>Sed ut perspiciatis unde omnis iste natus error sit voluptatem</h3>
+                        <a [routerLink]="'blog-details'" class="readmore"> Ver más </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="blog-sec">
+                    <div class="blog-image">
+                        <img alt="Post Image" class="img-fluid" src="assets/img/blog/blog-03.jpg">
+                    </div>
+                    <div class="blog-content text-center">
+                        <p>13/03/2020 | Category</p>
+                        <h3>Lorem ipsum, or lipsum as it is sometimes known doloremque.</h3>
+                        <a [routerLink]="'blog-details'" class="readmore"> Ver más </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Blog Section -->

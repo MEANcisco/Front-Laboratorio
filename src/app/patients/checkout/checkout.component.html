@@ -1,0 +1,120 @@
+<!-- Breadcrumb -->
+<!-- <div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Checkout</h2>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-7 col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- Checkout Form -->
+                        <form>
+
+                            <!-- Personal Information -->
+                            <div class="info-widget">
+                                <h4 class="card-title">Paciente</h4>
+                                <div *ngIf="auth.isLoggedIn" class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group card-label">
+                                            <label>Nombre<span class="required">*</span></label>
+                                            <input class="form-control" name="firstname" type="text"
+                                                   value="{{this.auth.currentUser?.nombre}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group card-label">
+                                            <label>Apellido<span class="required">*</span></label>
+                                            <input class="form-control" name="lastname" type="text"
+                                                   value="{{this.auth.currentUser?.apellido}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group card-label">
+                                            <label>Email<span class="required">*</span></label>
+                                            <input class="form-control" name="email" type="email"
+                                                   value="{{this.auth.currentUser?.email}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group card-label">
+                                            <label>Telefono<span class="required">*</span></label>
+                                            <input class="form-control" name="phone" type="text"
+                                                   value="{{this.auth.currentUser?.telefono}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="!auth.isLoggedIn" class="exist-customer">Es necesario acceder para esta
+                                    solicitud. <a [routerLink]="'/login-page'">Click para acceder</a></div>
+                                <div *ngIf="auth.isLoggedIn" class="submit-section mt-4">
+                                    <a (click)="booking()" class="btn btn-primary submit-btn"
+                                       type="submit">Confirmar</a>
+                                </div>
+                            </div>
+                            <!-- /Personal Information -->
+
+
+                        </form>
+                        <!-- /Checkout Form -->
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-5 col-lg-4">
+
+                <!-- Booking Summary -->
+                <div class="card booking-card">
+                    <div class="card-header">
+                        <h4 class="card-title">Resumen de reserva</h4>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Booking Doctor Info -->
+                        <div class="booking-doc-info">
+
+                            <div class="booking-info">
+                                <h4><a> Examen: {{this.exaData.examen}}</a></h4>
+
+                            </div>
+                        </div>
+                        <!-- Booking Doctor Info -->
+
+                        <div class="booking-summary">
+                            <div class="booking-item-wrap">
+                                <ul class="booking-date">
+                                    <li>Fecha <span>{{req.exaData.day | date: 'M/d/yy'}}</span></li>
+                                    <li>Hora <span>{{req.exaData.day | date: 'h:mm a' : '+0'}}</span></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Booking Summary -->
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- /Page Content -->

@@ -1,0 +1,182 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Administrar Horarios</h4>
+                <div class="profile-box">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Duración de bloque</label>
+                                <ng-select2 [data]="exampleData" width="100%">
+                                    <option>-</option>
+                                    <option>15 mins</option>
+                                    <option selected="selected">30 mins</option>
+                                    <option>45 mins</option>
+                                    <option>1 Hour</option>
+                                </ng-select2>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card schedule-widget mb-0">
+
+                                <!-- Schedule Header -->
+                                <div class="schedule-header">
+
+                                    <!-- Schedule Nav -->
+                                    <div class="schedule-nav">
+                                        <ul class="nav nav-tabs nav-justified">
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#slot_sunday">Domingo</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#slot_monday">
+                                                    Lunes
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#slot_tuesday">Martes</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab"
+                                                   href="#slot_wednesday">Miercoles</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#slot_thursday">Jueves</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#slot_friday">Viernes</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#slot_saturday">Sabado</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- /Schedule Nav -->
+
+                                </div>
+                                <!-- /Schedule Header -->
+
+                                <!-- Schedule Content -->
+                                <div class="tab-content schedule-cont">
+
+                                    <!-- Sunday Slot -->
+                                    <div class="tab-pane fade" id="slot_sunday">
+                                        <h4 class="card-title d-flex justify-content-between">
+                                            <span>Time Slots</span>
+                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i
+                                                    class="fa fa-plus-circle"></i> Añadir Bloque</a>
+                                        </h4>
+                                        <p class="text-muted mb-0">No disponible</p>
+                                    </div>
+                                    <!-- /Sunday Slot -->
+
+                                    <!-- Monday Slot -->
+                                    <div class="tab-pane fade show active" id="slot_monday">
+                                        <h4 class="card-title d-flex justify-content-between">
+                                            <span>Bloques de Tiempo</span>
+                                            <a class="edit-link" data-toggle="modal" href="#edit_time_slot"><i
+                                                    class="fa fa-edit mr-1"></i>Añadir bloque</a>
+                                        </h4>
+
+                                        <!-- Slot List -->
+                                        <div class="doc-times">
+                                            <div class="doc-slot-list">
+                                                8:00 pm - 11:30 pm
+                                                <a class="delete_schedule" href="javascript:void(0)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                            <div class="doc-slot-list">
+                                                11:30 pm - 1:30 pm
+                                                <a class="delete_schedule" href="javascript:void(0)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                            <div class="doc-slot-list">
+                                                3:00 pm - 5:00 pm
+                                                <a class="delete_schedule" href="javascript:void(0)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                            <div class="doc-slot-list">
+                                                6:00 pm - 11:00 pm
+                                                <a class="delete_schedule" href="javascript:void(0)">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- /Slot List -->
+
+                                    </div>
+                                    <!-- /Monday Slot -->
+
+                                    <!-- Tuesday Slot -->
+                                    <div class="tab-pane fade" id="slot_tuesday">
+                                        <h4 class="card-title d-flex justify-content-between">
+                                            <span>Time Slots</span>
+                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i
+                                                    class="fa fa-plus-circle"></i> Añadir bloque</a>
+                                        </h4>
+                                        <p class="text-muted mb-0">No disponible</p>
+                                    </div>
+                                    <!-- /Tuesday Slot -->
+
+                                    <!-- Wednesday Slot -->
+                                    <div class="tab-pane fade" id="slot_wednesday">
+                                        <h4 class="card-title d-flex justify-content-between">
+                                            <span>Time Slots</span>
+                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i
+                                                    class="fa fa-plus-circle"></i> Añadir bloque</a>
+                                        </h4>
+                                        <p class="text-muted mb-0">No disponible</p>
+                                    </div>
+                                    <!-- /Wednesday Slot -->
+
+                                    <!-- Thursday Slot -->
+                                    <div class="tab-pane fade" id="slot_thursday">
+                                        <h4 class="card-title d-flex justify-content-between">
+                                            <span>Time Slots</span>
+                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i
+                                                    class="fa fa-plus-circle"></i> Añadir bloque</a>
+                                        </h4>
+                                        <p class="text-muted mb-0">No disponible</p>
+                                    </div>
+                                    <!-- /Thursday Slot -->
+
+                                    <!-- Friday Slot -->
+                                    <div class="tab-pane fade" id="slot_friday">
+                                        <h4 class="card-title d-flex justify-content-between">
+                                            <span>Time Slots</span>
+                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i
+                                                    class="fa fa-plus-circle"></i> Añadir bloque</a>
+                                        </h4>
+                                        <p class="text-muted mb-0">No disponible</p>
+                                    </div>
+                                    <!-- /Friday Slot -->
+
+                                    <!-- Saturday Slot -->
+                                    <div class="tab-pane fade" id="slot_saturday">
+                                        <h4 class="card-title d-flex justify-content-between">
+                                            <span>Time Slots</span>
+                                            <a class="edit-link" data-toggle="modal" href="#add_time_slot"><i
+                                                    class="fa fa-plus-circle"></i> Añadir bloque</a>
+                                        </h4>
+                                        <p class="text-muted mb-0">No disponible</p>
+                                    </div>
+                                    <!-- /Saturday Slot -->
+
+                                </div>
+                                <!-- /Schedule Content -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

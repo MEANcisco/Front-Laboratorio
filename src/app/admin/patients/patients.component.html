@@ -1,0 +1,63 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Lista de Pacientes</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
+                        <li class="breadcrumb-item active">Patient</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="table-responsive">
+                                <table [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="datatable table table-hover table-center mb-0"
+                                       datatable>
+                                    <thead>
+                                    <tr>
+                                        <th>Rut</th>
+                                        <th>Nombre</th>
+                                        <th>Fecha nacimiento</th>
+                                        <th>Direccion</th>
+                                        <th>Telefono</th>
+                                        <th>Last Visit</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let patient of table">
+                                        <td>{{patient.username}}</td>
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <a *ngIf="patient.avatar" class="avatar avatar-sm mr-2" href="javascript:void(0)"><img
+                                                        [src]="patient.avatar" alt="User Image"
+                                                        class="avatar-img rounded-circle"></a>
+                                                <a>{{patient.nombre}} {{patient.apellido}} </a>
+                                            </h2>
+                                        </td>
+                                        <td>{{patient.Fechanacimineto | date}}</td>
+                                        <td>{{patient.direccion}}</td>
+                                        <td>{{patient.telefono}}</td>
+                                        <td *ngIf="patient.reservas">{{patient.reservas[0].appoint | date : 'dd MMM yyyy'}}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

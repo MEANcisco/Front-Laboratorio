@@ -1,0 +1,189 @@
+<!-- Breadcrumb -->
+<!-- <div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-12">
+                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="''">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Booking</li>
+                    </ol>
+                </nav>
+                <h2 class="breadcrumb-title">Booking</h2>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- /Breadcrumb -->
+
+<!-- Page Content -->
+<div class="content">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div *ngIf="doctorDetails" class="booking-doc-info">
+                            <a [routerLink]="'patients/doctor-profile'" class="booking-doc-img">
+                                <img alt="User Image" src={{doctorDetails.profile}}>
+                            </a>
+                            <div class="booking-info">
+                                <h4><a >{{this.exData.examen}}</a></h4>
+                                <div class="rating">
+                                    <h6>Tipo de muestra: {{this.exData.tipo}}</h6>
+                                    <h6>Tiempo de Entrega: {{this.exData.entrega}}</h6>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4 col-md-6">
+                        <h4 class="mb-1">{{this.req.exaData.day | date}}</h4>
+                    </div>
+                    <div class="col-12 col-sm-8 col-md-6 text-sm-right">
+                        <div class="bookingrange btn btn-white btn-sm mb-3">
+                            <i class="far fa-calendar-alt mr-2"></i>
+                            <input (selected)="selectedDate($event, daterange)" [options]="options" daterangepicker id="daterange"
+                                   name="d1aterangeInput"/>
+                            <i class="fas fa-chevron-down ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Schedule Widget -->
+                <div class="card booking-schedule schedule-widget">
+
+                    <!-- Schedule Header -->
+                    <div class="schedule-header">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <!-- Day Slot -->
+                                <div class="day-slot">
+                                    <ul>
+                                        <li class="left-arrow">
+                                            <a>
+                                                <i class="fa fa-chevron-left"></i>
+                                            </a>
+                                        </li>
+                                        <li class="center">
+                                            <span>{{this.getDate(this.req.exaData.day)}}</span>
+                                            <span class="slot-date">{{this.req.exaData.day | date}}</span>
+                                        </li>
+
+                                        <li class="right-arrow">
+                                            <a>
+                                                <i class="fa fa-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /Day Slot -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Schedule Header -->
+
+                    <!-- Schedule Content -->
+                    <div class="schedule-cont">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <!-- Time Slot -->
+                                <div class="time-slot">
+                                    <ul class="clearfix">
+                                        <li>
+                                            <a (click)="this.changeTime(9, 00, 0)" class="{{this.active[0]}}">
+                                                <span>9:00</span> <span>AM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(9, 30, 1)" class="{{this.active[1]}}">
+                                                <span>9:30</span> <span>AM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(10, 00, 2)" class="{{this.active[2]}}">
+                                                <span>10:00</span> <span>AM</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a (click)="this.changeTime(10, 30, 3)" class="{{this.active[3]}}">
+                                                <span>10:30</span> <span>AM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(11, 00, 4)" class="{{this.active[4]}}">
+                                                <span>11:00</span> <span>AM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(11, 30, 5)" class="{{this.active[5]}}">
+                                                <span>11:30</span> <span>AM</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a (click)="this.changeTime(12, 00, 6)" class="{{this.active[6]}}">
+                                                <span>12:00</span> <span>AM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(12, 30, 7)" class="{{this.active[7]}}">
+                                                <span>12:30</span> <span>PM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(13, 00, 8)" class="{{this.active[8]}}">
+                                                <span>13:00</span> <span>PM</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a (click)="this.changeTime(13, 30, 9)" class="{{this.active[9]}}">
+                                                <span>13:30</span> <span>PM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(14, 00, 10)" class="{{this.active[10]}}">
+                                                <span>14:00</span> <span>PM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(14, 30, 11)" class="{{this.active[11]}}">
+                                                <span>14:30</span> <span>PM</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a (click)="this.changeTime(15, 00, 12)" class="{{this.active[12]}}">
+                                                <span>15:00</span> <span>AM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(15, 30, 13)" class="{{this.active[13]}}">
+                                                <span>15:30</span> <span>AM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(16, 00, 14)" class="{{this.active[14]}}">
+                                                <span>16:00</span> <span>AM</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a (click)="this.changeTime(16, 30, 15)" class="{{this.active[15]}}">
+                                                <span>16:30</span> <span>AM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(17, 00, 16)" class="{{this.active[16]}}">
+                                                <span>17:00</span> <span>AM</span>
+                                            </a>
+                                            <a (click)="this.changeTime(17, 30, 17)" class="{{this.active[17]}}">
+                                                <span>17:30</span> <span>AM</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /Time Slot -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Schedule Content -->
+
+                </div>
+                <!-- /Schedule Widget -->
+
+                <!-- Submit Section -->
+                <div class="submit-section proceed-btn text-right">
+                    <a [queryParams]="{id: doctorDetails?.id}" [routerLink]="'/patients/checkout'"
+                       class="btn btn-primary submit-btn">Continuar</a>
+                </div>
+                <!-- /Submit Section -->
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /Page Content -->
