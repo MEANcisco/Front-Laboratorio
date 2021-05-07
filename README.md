@@ -1,27 +1,25 @@
-# Doccur
+# Laboratorio Aleman
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.5.
+Proyecto generado con [Angular CLI](https://github.com/angular/angular-cli) version 11.
 
-## Development server
+## Servidor de desarrollo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Correr `ng serve` para el servidor de desarrollo. Navegar a `http://localhost:4200/`. La aplicacion recargara automaticamente al detectar modificaciones.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Correr `ng build`, le proyecto se creara en la carpeta dist
+## Correr pruebas unitarias
 
-## Running unit tests
+Corre `ng test` Para ejecutar tests [Karma](https://karma-runner.github.io).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Correr end-to-end tests
 
-## Running end-to-end tests
+Corre `ng e2e` para ejecutar tests via [Protractor](http://www.protractortest.org/).
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Para mas ayuda
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Contactar desarrollador:
+Francisco Eduardo Sandoval Valdivia 
++569 58303338
