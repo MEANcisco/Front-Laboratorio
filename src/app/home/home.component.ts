@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {SlickCarouselComponent} from 'ngx-slick-carousel';
 import * as moment from 'moment';
+import { MatCalendarCellClassFunction } from '@angular/material/datepicker/calendar-body';
 declare const $: any;
 
 export interface Doctors {
@@ -42,6 +43,18 @@ export class HomeComponent implements OnInit {
     blogs: any = [];
     keyword = 'name';
     searchDoctor = [];
+    dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
+        // Only highligh dates inside the month view.
+        if (view === 'month') {
+            const date = cellDate.getDate();
+
+            // Highlight the 1st and 20th day of each month.
+            return (date === 1 || date === 20) ? 'example-custom-date-class' : '';
+        }
+
+        return '';
+    }
+
     public countries = [
         {
             id: 1,

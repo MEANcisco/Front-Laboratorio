@@ -10,7 +10,7 @@ import {HomeComponent} from './home.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
 import {TooltipModule} from 'ng2-tooltip-directive';
-import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
     declarations: [HomeComponent],

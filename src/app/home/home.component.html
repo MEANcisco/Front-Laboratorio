@@ -26,6 +26,10 @@
             <div class="col-md-8 col-lg-8">
                 <label > Dia</label>
                 <div class="form-group">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
                     <input [(ngModel)]="this.reqapp.exaData.day" id="datefield" class="form-control" placeholder="Dia" type="date">
                 </div>
 

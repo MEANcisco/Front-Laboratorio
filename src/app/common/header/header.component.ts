@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.authS.currentUser.role.type);
         if (localStorage.getItem('user') === 'true') {
             this.auth = true;
             this.isPatient = this.authS.currentUser.role.name === 'paciente' ? true : false;

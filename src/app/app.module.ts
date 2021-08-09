@@ -14,7 +14,6 @@ import {DataService} from './data.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import localeEsCL from '@angular/common/locales/es-CL';
 import { AgmCoreModule } from '@agm/core';
-
 import {ToastrModule} from 'ngx-toastr';
 import {JwtModule} from '@auth0/angular-jwt';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
