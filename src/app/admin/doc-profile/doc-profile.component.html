@@ -29,10 +29,9 @@
                         <div class="col ml-md-n2 profile-user-info">
                             <h4 class="user-name mb-0">{{admpane.selectedusr.nombre}} {{admpane.selectedusr.apellido}}</h4>
                             <h6 class="text-muted">{{admpane.selectedusr.email}}</h6>
-                            <div class="user-Location"><i class="fa fa-map-marker"></i> Florida, United States</div>
-                            <div class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </div>
+                            <div class="user-Location" *ngIf="admpane.selectedusr.direccion"><i class="fa fa-map-marker"></i> {{admpane.selectedusr.direccion}}</div>
+                            <div class="user-Location" *ngIf="!admpane.selectedusr.direccion"><i class="fa fa-map-marker"></i>No especifica</div>
+
                         </div>
                         <div class="col-auto profile-btn">
 
@@ -71,7 +70,7 @@
                                             <p class="col-sm-10">{{admpane.selectedusr.nombre}} {{admpane.selectedusr.apellido}}</p>
                                         </div>
                                         <div class="row">
-                                            <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Date of Birth</p>
+                                            <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Fecha de Nacimiento</p>
                                             <p class="col-sm-10">24 Jul 1983</p>
                                         </div>
                                         <div class="row">
@@ -84,8 +83,11 @@
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted text-sm-right mb-0">Dirección</p>
-                                            <p class="col-sm-10 mb-0">
+                                            <p class="col-sm-10 mb-0" *ngIf="admpane.selectedusr.direccion">
                                                 {{admpane.selectedusr.direccion}}
+                                            </p>
+                                            <p class="col-sm-10 mb-0" *ngIf="!admpane.selectedusr.direccion">
+                                                No especifica
                                             </p>
                                         </div>
                                     </div>
@@ -95,23 +97,23 @@
 
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title">Change Password</h5>
+                                            <h5 class="card-title">Cambiar contraseña</h5>
                                             <div class="row">
                                                 <div class="col-md-10 col-lg-6">
                                                     <form>
                                                         <div class="form-group">
-                                                            <label>Old Password</label>
+                                                            <label>Antigua Contraseña</label>
                                                             <input class="form-control" type="password">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>New Password</label>
+                                                            <label>Nueva Clave</label>
                                                             <input class="form-control" type="password">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Confirm Password</label>
+                                                            <label>Confirmar Clave</label>
                                                             <input class="form-control" type="password">
                                                         </div>
-                                                        <button class="btn btn-primary" type="submit">Save Changes
+                                                        <button class="btn btn-primary" type="submit">Guardar Cambios
                                                         </button>
                                                     </form>
                                                 </div>

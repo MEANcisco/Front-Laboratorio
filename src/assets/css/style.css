@@ -2897,7 +2897,7 @@ html.menu-opened body {
 -----------------------*/
 
 .section-search {
-    background: #f9f9f9 url(../img/search-bg.png) no-repeat bottom center;
+    background: #f9f9f9 url(../img/PCR2.png) no-repeat bottom center;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -3006,7 +3006,7 @@ html.menu-opened body {
 }
 
 .section-treatment .placeholder {
-    background: url(../img/effect.jpg) no-repeat bottom center;
+    background: url(../img/matriz.jpg) no-repeat bottom center;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -3156,7 +3156,7 @@ html.menu-opened body {
 }
 
 .why-section {
-    background: url(../img/choose-bg.jpg);
+    background-image: url(https://www.laboratorioblanco.cl/wp-content/uploads/2021/02/1.jpg);
     background-position: right;
     display: flex;
     background-position: center;

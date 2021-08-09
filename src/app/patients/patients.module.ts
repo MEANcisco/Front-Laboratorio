@@ -11,7 +11,7 @@ import { ExamenesComponent } from './examenes/examenes.component';
 import { DomiciliosComponent } from './domicilios/domicilios.component';
 import { AgmCoreModule } from '@agm/core';
 import {Daterangepicker} from "ng2-daterangepicker";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -32,7 +32,8 @@ import {FormsModule} from "@angular/forms";
             libraries: ['places']
         }),
         Daterangepicker,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

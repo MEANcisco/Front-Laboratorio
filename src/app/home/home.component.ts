@@ -7,7 +7,7 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {SlickCarouselComponent} from 'ngx-slick-carousel';
-
+import * as moment from 'moment';
 declare const $: any;
 
 export interface Doctors {
@@ -25,8 +25,11 @@ export interface Doctors {
     // encapsulation : ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
+    today;
     selectex;
     datex;
+    minDate = new Date(2000, 0, 1);
+    maxDate = new Date(2020, 0, 1);
     exams = this.reqapp.getExams();
     @ViewChild('slickModal1') slickModal1: SlickCarouselComponent;
     @ViewChild('slickModal2') slickModal2: SlickCarouselComponent;
@@ -282,6 +285,36 @@ export class HomeComponent implements OnInit {
         },
     ];
 
+    isapres = [
+        {
+            isapre: 'Banmedica',
+            url: 'https://www.banmedica.cl/bono-web/'
+        },
+        {
+            isapre: 'Cruz Blanca',
+            url: 'https://www.cruzblanca.cl/cruzblanca/site/edic/base/port/acceso_privado.html'
+        },
+        {
+            isapre: 'Colmena golden cross',
+            url: 'https://www.colmena.cl/afiliados/#/login'
+        },
+        {
+            isapre: 'Nueva Mas Vida',
+            url: 'https://sv.nuevamasvida.cl'
+        },
+        {
+            isapre: 'Fundación',
+            url: 'https://www.isaprefundacion.cl'
+        },
+        {
+            isapre: 'Vida Tres',
+            url: 'https://www.isaprevidatres.cl/LoginVidaTres.aspx'
+        },
+        {
+            isapre: 'Consalud',
+            url: 'https://www.consalud.cl/viveconsalud/servicios-para-ti/servicios-bonos-web.html'
+        },
+    ];
     constructor(
         public router: Router,
         public commonService: CommonServiceService,
@@ -296,13 +329,25 @@ export class HomeComponent implements OnInit {
         );
     }
 
-    openelement() {
-        window.open('http://45.71.46.202/irispacientes/login_nuevo2.asp');
+    openelement(open) {
+        window.open(open);
     }
 
     async ngOnInit() {
         // Slick Slider
-
+        const today = new Date();
+        let dd: any = today.getDate();
+        let mm: any = today.getMonth() + 1; // January is 0!
+        const yyyy = today.getFullYear();
+        if (dd < 10){
+            dd = '0' + dd;
+        }
+        if (mm < 10){
+            mm = '0' + mm;
+        }
+        this.today = yyyy + '-' + mm + '-' + (dd + 1);
+        document.getElementById('datefield').setAttribute('value', this.today);
+        const currentYear = moment().year();
 
         // this.examenes.forEach(
         //   v => {
@@ -379,12 +424,12 @@ export class HomeComponent implements OnInit {
         this.getblogs();
 
         // User's voice slider
-        $('.testi-slider').each(function () {
+        $('.testi-slider').each(function() {
             const $show = $(this).data('show');
             const $arr = $(this).data('arrow');
             const $dots = !$arr;
             let $m_show = $show;
-            if ($show == 3) {
+            if ($show === 3) {
                 $m_show = $show - 1;
             }
             $(this).slick({

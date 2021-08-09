@@ -133,6 +133,17 @@
                         <input [(ngModel)]="description" class="form-control" name="speciality" type="text">
                     </div>
                 </div>
+                <editor
+                        [(ngModel)]="content"
+                        apiKey="lhxyg81g535ulem9hvy8sx2e3480zch82z6jlfy46lsi2utk"
+                        [init]="{
+    icons: 'material',
+    skin: 'borderless',
+    plugins: 'wordcount',
+    menubar: false,
+    min_height: 150
+  }"
+                ></editor>
                 <div class="col-12 col-sm-6">
                     <div class="form-group">
                         <label>Tipo</label>

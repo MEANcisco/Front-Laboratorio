@@ -17,6 +17,7 @@ export class BlogComponent implements OnInit {
     modalRef: BsModalRef;
     blogDetails;
     id;
+    content: any;
 
     constructor(private modalService: BsModalService,
                 private commonService: CommonServiceService,
@@ -69,6 +70,7 @@ export class BlogComponent implements OnInit {
             description: this.blogDetails.description,
             createdBy: this.authy.getUserData.nombre,
             createdAt: new Date(),
+            content: this.content,
             comments: 0,
             type: this.type,
             status: true
@@ -87,7 +89,8 @@ export class BlogComponent implements OnInit {
             description: this.description,
             createdBy: this.authy.getUserData.nombre,
             createdAt: new Date(),
-            comments: "",
+            comments: '',
+            content: '',
             type: this.type,
             status: true
         }

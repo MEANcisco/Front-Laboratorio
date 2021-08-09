@@ -26,9 +26,9 @@
                 <!-- Blog Post -->
                 <div *ngFor="let blog of blogs | slice:0:4" class="blog">
                     <div class="blog-image">
-                        <a [queryParams]="{id: blog.id}" [routerLink]="'/blog-details'"><img alt="Post Image"
-                                                                                             class="img-fluid"
-                                                                                             src="{{blog.img}}"></a>
+                        <a [queryParams]="{id: blog.id}" [routerLink]="'/blog-details'">
+                            <img *ngIf="blog.img !== null" alt="Post Image" class="img-fluid"  src="{{blog.img}}">
+                        </a>
                     </div>
                     <h3 class="blog-title"><a [queryParams]="{id: blog.id}"
                                               [routerLink]="'/blog-details'">{{blog.title}}</a></h3>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="blog-content">
                         <p>{{blog.description}}</p>
-                        <a [queryParams]="{id: blog.id}" [routerLink]="'/blog-details'" class="read-more">Read More</a>
+                        <a [queryParams]="{id: blog.id}" [routerLink]="'/blog-details'" class="read-more">Ver Mas</a>
                     </div>
                 </div>
                 <!-- /Blog Post -->

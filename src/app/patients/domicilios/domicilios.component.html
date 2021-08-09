@@ -69,13 +69,35 @@
                     <!-- /Schedule Header -->
 
                     <!-- Schedule Content -->
-                    <div class="schedule-cont">
+                    <div class="schedule-cont row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group card-label">
                                 <label>Dirección<span class="required">*</span></label>
                                 <input [(ngModel)]="datasend.direccion" class="form-control" name="direccion" type="text">
                             </div>
                         </div>
+                        <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <form [formGroup]="myForm" (ngSubmit)="submit()">
+                                <label>Orden médica</label>
+                                <input
+                                        formControlName="files"
+                                        type="file"
+                                        class="form-control-file"
+                                        id="files"
+                                        (change)="onFileChange($event)">
+                                <br>
+                                <p *ngIf="progress">{{progress}}%</p>
+                                <div class="progress form-group" *ngIf="progress > 0">
+                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        </div>
+                        <p>Puede mover el puntero para especificar la ubicación en el mapa
+                        </p>
                         <agm-map style="height: 300px; width: 100%" [zoom]="15" [latitude]="lat" [longitude]="lng" >
                             <agm-marker [markerDraggable]="true" (dragEnd)="markerDragEnd(latitude, longitude, $event)" [latitude]="lat" [longitude]="lng"></agm-marker>
                         </agm-map>
@@ -87,7 +109,7 @@
 
                 <!-- Submit Section -->
                 <div class="submit-section proceed-btn text-right">
-                    <a [queryParams]="{id: doctorDetails?.id}" (click)="sendData()"
+                    <a (click)="sendData()"
                        class="btn btn-primary submit-btn">Continuar</a>
                 </div>
                 <!-- /Submit Section -->
