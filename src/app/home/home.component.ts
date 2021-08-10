@@ -346,7 +346,16 @@ export class HomeComponent implements OnInit {
             mm = '0' + mm;
         }
         this.today = yyyy + '-' + mm + '-' + (dd + 1);
-        document.getElementById('datefield').setAttribute('value', this.today);
+        document.getElementById('datefield')
+            .setAttribute('max', yyyy + '-' + mm + '-' + (dd + 2));
+
+        document.getElementById('datefield')
+            .setAttribute('min', yyyy + '-' + mm + '-' + (dd + 1));
+
+        document.getElementById('datefield')
+            .setAttribute('min', yyyy + '-' + mm + '-' + (dd + 5));
+        document.getElementById('datefield')
+            .setAttribute('max', yyyy + '-' + mm + '-' + (dd + 6));
         const currentYear = moment().year();
 
         // this.examenes.forEach(
