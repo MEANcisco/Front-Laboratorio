@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular';
+import {CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventInput} from '@fullcalendar/angular';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import esLocale from '@fullcalendar/core/locales/es';
+import {FiredatabaseService} from '../../services/firedatabase.service';
 @Component({
     selector: 'app-settings',
     templateUrl: './settings.component.html',
@@ -9,7 +10,9 @@ import esLocale from '@fullcalendar/core/locales/es';
 })
 export class SettingsComponent implements OnInit {
     locales = [esLocale];
-    calendarVisible = true;
+    calendarVisible = false;
+    INIT_EVENTS: EventInput[] = [];
+    TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
     calendarOptions: CalendarOptions = {
         locale: esLocale,
         headerToolbar: {
@@ -18,7 +21,7 @@ export class SettingsComponent implements OnInit {
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
         },
         initialView: 'dayGridMonth',
-        initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        initialEvents: this.INIT_EVENTS, // alternatively, use the `events` setting to fetch from a feed
         weekends: true,
         editable: true,
         selectable: true,
@@ -34,7 +37,28 @@ export class SettingsComponent implements OnInit {
         */
     };
     currentEvents: EventApi[] = [];
+    constructor(
+        private calsv: FiredatabaseService
+    ) {
+    }
 
+    ngOnInit(): void {
+        this.loadCalendar();
+    }
+
+    loadCalendar() {
+        this.calsv.getCalendar().subscribe((catsSnapshot) => {
+            this.INIT_EVENTS = [];
+            catsSnapshot.forEach((catData: any) => {
+                const calendarApi = selectInfo.view.calendar;
+
+                this.currentEvents.push(catData.payload.doc.data());
+                console.log(catData.payload.doc.data());
+            });
+            console.log(this.currentEvents);
+        });
+        this.calendarVisible = true;
+    }
     handleCalendarToggle() {
         this.calendarVisible = !this.calendarVisible;
     }
@@ -57,7 +81,20 @@ export class SettingsComponent implements OnInit {
                 start: selectInfo.startStr,
                 end: selectInfo.endStr,
                 allDay: selectInfo.allDay
-            });
+            }
+            );
+
+            this.calsv.createCalendar({
+                id: createEventId(),
+                title,
+                start: selectInfo.startStr,
+                end: selectInfo.endStr,
+                allDay: selectInfo.allDay
+            }).then(
+                v => {
+                    console.log(v);
+                }
+            );
         }
     }
 
@@ -70,9 +107,7 @@ export class SettingsComponent implements OnInit {
     handleEvents(events: EventApi[])
     {
         this.currentEvents = events;
-        console.log(events);
     }
 
-    ngOnInit(): void {
-    }
+
 }
