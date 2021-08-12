@@ -1,5 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventInput} from '@fullcalendar/angular';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {
+    CalendarOptions,
+    DateSelectArg,
+    EventClickArg,
+    EventApi,
+    EventInput,
+    FullCalendarComponent
+} from '@fullcalendar/angular';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import esLocale from '@fullcalendar/core/locales/es';
 import {FiredatabaseService} from '../../services/firedatabase.service';
@@ -10,33 +17,11 @@ import {FiredatabaseService} from '../../services/firedatabase.service';
 })
 export class SettingsComponent implements OnInit {
     locales = [esLocale];
-    calendarVisible = false;
+    calendarVisible = true;
     INIT_EVENTS: EventInput[] = [];
+    currentEvents = [];
     TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
-    calendarOptions: CalendarOptions = {
-        locale: esLocale,
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-        },
-        initialView: 'dayGridMonth',
-        initialEvents: this.INIT_EVENTS, // alternatively, use the `events` setting to fetch from a feed
-        weekends: true,
-        editable: true,
-        selectable: true,
-        selectMirror: true,
-        dayMaxEvents: true,
-        select: this.handleDateSelect.bind(this),
-        eventClick: this.handleEventClick.bind(this),
-        eventsSet: this.handleEvents.bind(this)
-        /* you can update a remote database when these fire:
-        eventAdd:
-        eventChange:
-        eventRemove:
-        */
-    };
-    currentEvents: EventApi[] = [];
+    calendarOptions: CalendarOptions;
     constructor(
         private calsv: FiredatabaseService
     ) {
@@ -47,16 +32,41 @@ export class SettingsComponent implements OnInit {
     }
 
     loadCalendar() {
+        this.calendarVisible = false;
         this.calsv.getCalendar().subscribe((catsSnapshot) => {
-            this.INIT_EVENTS = [];
-            catsSnapshot.forEach((catData: any) => {
-                const calendarApi = selectInfo.view.calendar;
-
-                this.currentEvents.push(catData.payload.doc.data());
-                console.log(catData.payload.doc.data());
+                this.currentEvents = [];
+                catsSnapshot.forEach((catData: any) => {
+                    // const calendarApi = selectInfo.view.calendar;
+                    this.currentEvents.push(catData.payload.doc.data());
+                });
+                console.log(this.currentEvents);
             });
-            console.log(this.currentEvents);
-        });
+            
+        setTimeout(() => {
+            this.calendarOptions = {
+                locale: esLocale,
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                },
+                initialView: 'dayGridMonth',
+                events: this.currentEvents,
+                weekends: true,
+                editable: true,
+                selectable: true,
+                selectMirror: true,
+                dayMaxEvents: true,
+                select: this.handleDateSelect.bind(this),
+                eventClick: this.handleEventClick.bind(this),
+                eventsSet: this.handleEvents.bind(this)
+                /* you can update a remote database when these fire:
+                eventAdd:
+                eventChange:
+                eventRemove:
+                */
+            };
+        }, 2500);
         this.calendarVisible = true;
     }
     handleCalendarToggle() {
@@ -69,20 +79,13 @@ export class SettingsComponent implements OnInit {
     }
 
     handleDateSelect(selectInfo: DateSelectArg) {
+        console.log(selectInfo);
         const title = prompt('Añada un titulo para su evento.');
         const calendarApi = selectInfo.view.calendar;
 
         calendarApi.unselect(); // clear date selection
 
         if (title) {
-            calendarApi.addEvent({
-                id: createEventId(),
-                title,
-                start: selectInfo.startStr,
-                end: selectInfo.endStr,
-                allDay: selectInfo.allDay
-            }
-            );
 
             this.calsv.createCalendar({
                 id: createEventId(),
@@ -92,7 +95,7 @@ export class SettingsComponent implements OnInit {
                 allDay: selectInfo.allDay
             }).then(
                 v => {
-                    console.log(v);
+                    this.loadCalendar();
                 }
             );
         }
