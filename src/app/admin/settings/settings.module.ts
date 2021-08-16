@@ -8,6 +8,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 FullCalendarModule.registerPlugins([
@@ -19,6 +20,7 @@ FullCalendarModule.registerPlugins([
 @NgModule({
     declarations: [SettingsComponent],
     imports: [
+        MatSliderModule,
         CommonModule,
         SettingsRoutingModule,
         FullCalendarModule

@@ -16,8 +16,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class DomiciliosComponent implements OnInit {
   name = 'Angular 5';
   progress;
-  lat = 51.678418;
-  lng = 7.809007;
+  lat = -34.9833;
+  lng = -71.2333;
   myForm = new FormGroup({
     files: new FormControl('', [Validators.required]),
     fileSource: new FormControl('', [Validators.required])
@@ -25,7 +25,6 @@ export class DomiciliosComponent implements OnInit {
   exData;
   header;
   doctorId;
-  doctorDetails;
   userDetails;
   active = [
     'timing',
@@ -57,7 +56,11 @@ export class DomiciliosComponent implements OnInit {
     geo: {
       lat: 0,
       lng: 0
-    }
+    },
+    tercero: this.req.exaData.tercero,
+    thuser: this.req.exaData.thuser,
+    referencia: ''
+
   };
   public daterange: any = {};
   public options: any = {

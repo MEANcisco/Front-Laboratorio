@@ -25,17 +25,49 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <div *ngIf="doctorDetails" class="booking-doc-info">
-                            <a [routerLink]="'patients/doctor-profile'" class="booking-doc-img">
-                                <img alt="User Image" src={{doctorDetails.profile}}>
-                            </a>
+                        <div class="booking-doc-info">
+
                             <div class="booking-info">
                                 <h4><a >{{this.exData.examen}}</a></h4>
                                 <div class="rating">
                                     <h6>Tipo de muestra: {{this.exData.tipo}}</h6>
                                     <h6>Tiempo de Entrega: {{this.exData.entrega}}</h6>
-
+                                    <h4>
+                                        <mat-checkbox [(ngModel)]="this.req.exaData.tercero" class="example-margin">Reservar para un tercero</mat-checkbox>
+                                    </h4>
                                 </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="booking-info" *ngIf="this.req.exaData.tercero">
+                                <h3>Ingrese información del paciente</h3>
+
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Nombre</mat-label>
+                                    <input matInput placeholder="Juan" [(ngModel)]="this.req.exaData.thuser.nombre">
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Apellido</mat-label>
+                                    <input matInput placeholder="Perez" [(ngModel)]="this.req.exaData.thuser.apellido">
+                                </mat-form-field>
+                                <br>
+
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Telefono</mat-label>
+                                    <input matInput placeholder="+569 12345678" [(ngModel)]="this.req.exaData.thuser.telefono">
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Dirección</mat-label>
+                                    <input matInput placeholder="Calle 123" [(ngModel)]="this.req.exaData.thuser.direccion">
+                                </mat-form-field>
+                                <br>
+
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Rut</mat-label>
+                                    <input matInput placeholder="1.234.456-7" [(ngModel)]="this.req.exaData.thuser.rut">
+                                </mat-form-field>
+
                             </div>
                         </div>
                     </div>
@@ -96,18 +128,17 @@
                                 <!-- Time Slot -->
                                 <div class="time-slot">
                                     <ul class="clearfix">
-                                        <li>
-                                            <a (click)="this.changeTime(9, 00, 0)" class="{{this.active[0]}}">
+                                        <li *ngFor="let item of CalenDates; let i = index">
+                                          <!--  <a (click)="this.changeTime(9, 00, 0)" class="{{this.active[0]}}">
                                                 <span>9:00</span> <span>AM</span>
                                             </a>
-                                            <a (click)="this.changeTime(9, 30, 1)" class="{{this.active[1]}}">
-                                                <span>9:30</span> <span>AM</span>
+  -->
+                                            <a (click)="changeTime(i, item)" class="{{this.active[i]}}">
+                                                <span>{{item.start | date: 'shortTime'}}</span> <span></span>
                                             </a>
-                                            <a (click)="this.changeTime(10, 00, 2)" class="{{this.active[2]}}">
-                                                <span>10:00</span> <span>AM</span>
-                                            </a>
+
                                         </li>
-                                        <li>
+                                       <!-- <li>
                                             <a (click)="this.changeTime(10, 30, 3)" class="{{this.active[3]}}">
                                                 <span>10:30</span> <span>AM</span>
                                             </a>
@@ -161,7 +192,7 @@
                                             <a (click)="this.changeTime(17, 30, 17)" class="{{this.active[17]}}">
                                                 <span>17:30</span> <span>AM</span>
                                             </a>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                 </div>
                                 <!-- /Time Slot -->

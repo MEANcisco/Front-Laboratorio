@@ -4,9 +4,7 @@ import {
     DateSelectArg,
     EventClickArg,
     EventApi,
-    EventInput,
-    FullCalendarComponent
-} from '@fullcalendar/angular';
+    EventInput} from '@fullcalendar/angular';
 import { INITIAL_EVENTS, createEventId } from './event-utils';
 import esLocale from '@fullcalendar/core/locales/es';
 import {FiredatabaseService} from '../../services/firedatabase.service';
@@ -18,9 +16,7 @@ import {FiredatabaseService} from '../../services/firedatabase.service';
 export class SettingsComponent implements OnInit {
     locales = [esLocale];
     calendarVisible = true;
-    INIT_EVENTS: EventInput[] = [];
     currentEvents = [];
-    TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
     calendarOptions: CalendarOptions;
     constructor(
         private calsv: FiredatabaseService
@@ -36,12 +32,10 @@ export class SettingsComponent implements OnInit {
         this.calsv.getCalendar().subscribe((catsSnapshot) => {
                 this.currentEvents = [];
                 catsSnapshot.forEach((catData: any) => {
-                    // const calendarApi = selectInfo.view.calendar;
                     this.currentEvents.push(catData.payload.doc.data());
                 });
                 console.log(this.currentEvents);
             });
-            
         setTimeout(() => {
             this.calendarOptions = {
                 locale: esLocale,
@@ -66,7 +60,7 @@ export class SettingsComponent implements OnInit {
                 eventRemove:
                 */
             };
-        }, 2500);
+        }, 1000);
         this.calendarVisible = true;
     }
     handleCalendarToggle() {
@@ -92,7 +86,8 @@ export class SettingsComponent implements OnInit {
                 title,
                 start: selectInfo.startStr,
                 end: selectInfo.endStr,
-                allDay: selectInfo.allDay
+                allDay: selectInfo.allDay,
+                disponible: true
             }).then(
                 v => {
                     this.loadCalendar();

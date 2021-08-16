@@ -3,6 +3,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CommonServiceService} from './../../common-service.service';
 import * as moment from 'moment';
+import {FiredatabaseService} from '../../services/firedatabase.service';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({
     selector: 'app-booking',
@@ -12,28 +14,31 @@ import * as moment from 'moment';
 export class BookingComponent implements OnInit {
     exData;
     doctorId;
+    thirdser = false;
     doctorDetails;
     userDetails;
+
+    CalenDates = [];
     active = [
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing",
-        "timing"
-    ]
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing',
+        'timing'
+    ];
     public daterange: any = {};
 
     // see original project for full list of options
@@ -44,6 +49,7 @@ export class BookingComponent implements OnInit {
     };
 
     constructor(
+        private fs: AngularFirestore,
         private route: ActivatedRoute,
         public commonService: CommonServiceService,
         public req: ReqAppointService,
@@ -63,10 +69,11 @@ export class BookingComponent implements OnInit {
     }
 
     async ngOnInit(): Promise<void> {
+        this.loader();
         this.exData = await this.req.getOneExam();
         console.log(this.exData);
         if (this.req.exaData.day === '') {
-            this.router.navigate(['/home'])
+            this.router.navigate(['/home']);
 
         }
         if (this.route.snapshot.queryParams.id) {
@@ -79,40 +86,41 @@ export class BookingComponent implements OnInit {
     getDate(val): string {
         const dt = moment(val, 'YYYY-MM-DD HH:mm:ss');
 
-        return dt.lang("es").format('dddd');
+        return dt.lang('es').format('dddd');
     }
 
-    Naver() {
+    loader() {
+        this.fs.collection('calendar', ref => ref
+            .where('start', '>', moment(this.req.exaData.day).format('YYYY-MM-DDTHH:mm:ss'))
+            .where('start', '<', moment(this.req.exaData.day).add(1, 'days').format('YYYY-MM-DDTHH:mm:ss'))
+            .where('disponible', '==', true)
+        ).snapshotChanges()
+            .subscribe(
+                (calendarSnap: any) => {
+                    console.log(calendarSnap.length);
+                    this.CalenDates = [];
+                    calendarSnap.forEach( v => {
+                        let x = v.payload.doc.data();
+                        x.idDoc = v.payload.doc.id;
+                        this.CalenDates.push(x);
+                    });
+                }
+            );
 
+        setTimeout( () => {console.log(this.CalenDates); } , 2000 );
     }
 
-    getDoctorsDetails() {
-        this.commonService.getDoctorDetails(this.doctorId)
-            .subscribe((res) => {
-                this.doctorDetails = res;
-            });
-    }
-
-    patientDetails() {
-        let userId;
-        userId = localStorage.getItem('id');
-        if (!userId) {
-            userId = 1;
-        }
-        this.commonService.getPatientDetails(Number(userId)).subscribe((res) => {
-            this.userDetails = res;
-        });
-    }
-
-    changeTime(hr, min, arr) {
-        const tm = moment(this.req.exaData.day).set('hours', hr - 4).set('minutes', min).toISOString();
-        this.req.exaData.day = tm;
+    changeTime(v, arr) {
+        // const tm = moment(this.req.exaData.day).set('hours', hr - 4).set('minutes', min).toISOString();
+        // this.req.exaData.day = tm;
+        this.req.exaData.day = arr.start;
         this.active.forEach((d, i) => {
-            if (d === "timing selected") {
-                this.active[i] = "timing";
+            if (d === 'timing selected') {
+                this.active[i] = 'timing';
             }
-        })
-        this.active[arr] = "timing selected";
-        console.log(tm, arr);
+        });
+        this.req.appObj = arr;
+        this.active[v] = 'timing selected';
+        console.log(v, arr);
     }
 }

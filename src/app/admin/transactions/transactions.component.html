@@ -5,10 +5,10 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3 class="page-title">Transactions</h3>
+                    <h3 class="page-title">Domicilios</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a [routerLink]="''">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Transactions</li>
+                        <li class="breadcrumb-item active">Domicilios</li>
                     </ul>
                 </div>
             </div>
@@ -24,35 +24,58 @@
                                    datatable>
                                 <thead>
                                 <tr>
-                                    <th>Numero Boleta</th>
+                                    <th>Fecha</th>
+                                    <th>Dirección</th>
                                     <th>Paciente</th>
-                                    <th>Nombre paciente</th>
-                                    <th>Valor</th>
-                                    <th class="text-center">Estado</th>
-                                    <th class="text-right">Acciones</th>
+                                    <th>Tercero</th>
+                                    <th class="text-center">Aprobar</th>
+                                    <th class="text-center">Aprobado</th>
+
+                                    <th class="text-right">Eliminar</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr *ngFor="let trans of transactionsList">
-                                    <td><a [routerLink]="'/admin/admin-invoice'">{{trans.invoiceNumber}}</a></td>
-                                    <td>{{trans.patient_id}}</td>
-                                    <td>
-                                        <h2 class="table-avatar">
-                                            <a [routerLink]="'doc-profile'" class="avatar avatar-sm mr-2"><img
-                                                    [src]="trans.profile" alt="User Image"
-                                                    class="avatar-img rounded-circle"></a>
-                                            <a [routerLink]="'doc-profile'">{{trans.patient_name}}</a>
-                                        </h2>
+                                    <td><a>{{trans.fecha | date: "short"}}</a></td>
+                                    <td *ngIf="!trans.tercero">{{trans.direccion}}</td>
+                                    <td *ngIf="trans.tercero">{{trans.thuser.direccion}}</td>
+
+                                    <td *ngIf="!trans.tercero">
+                                        <a (click)="patientModal(patient, {id: trans.id, nombre: trans.users_permissions_user.nombre, apellido: trans.users_permissions_user.apellido,
+                                        direccion: trans.users_permissions_user.direccion, telefono: trans.users_permissions_user.telefono, rut: trans.users_permissions_user.username})" class="btn btn-sm bg-success-light"
+                                                                  data-toggle="modal">
+                                            Paciente
+                                        </a>
                                     </td>
-                                    <td>{{trans.total_amount}}</td>
-                                    <td class="text-center">
-                                        <span class="badge badge-pill bg-success inv-badge">{{trans.status}}</span>
+                                    <td *ngIf="trans.tercero">
+                                        <a (click)="patientModal(patient,{id: trans.id,
+                                        nombre: trans.thuser.nombre, apellido: trans.thuser.apellido, direccion: trans.thuser.direccion,
+                                        telefono: trans.thuser.telefono, rut: trans.thuser.rut
+                                        })" class="btn btn-sm bg-success-light"
+                                           data-toggle="modal">Paciente</a> </td>
+                                    <td>  <mat-checkbox ngModel="{{trans.tercero}}" class="example-margin"></mat-checkbox>
+                                        </td>
+
+                                    <td *ngIf="!trans.tercero">
+                                        <a (click)="aprobarModal(aprobar, {id: trans.id,nombre: trans.users_permissions_user.nombre, apellido: trans.users_permissions_user.apellido,
+                                        direccion: trans.users_permissions_user.direccion, telefono: trans.users_permissions_user.telefono, rut: trans.users_permissions_user.username, orden: trans.orden}, trans)" class="btn btn-sm bg-success-light"
+                                           data-toggle="modal">
+                                            Aprobar
+                                        </a>
+                                    </td>
+                                    <td *ngIf="trans.tercero" class="text-center">
+                                        <a (click)="aprobarModal(aprobar,{id: trans.id,
+                                        nombre: trans.thuser.nombre, apellido: trans.thuser.apellido, direccion: trans.thuser.direccion,
+                                        telefono: trans.thuser.telefono, rut: trans.thuser.rut, orden: trans.orden
+                                        }, trans)" class="btn btn-sm bg-success-light"
+                                           data-toggle="modal">Aprobar</a> </td>
+                                    <td>  <mat-checkbox ngModel="{{trans.aprobado}}" class="example-margin"></mat-checkbox>
                                     </td>
                                     <td class="text-right">
                                         <div class="actions">
                                             <a (click)="deleteModal(delete,trans)" class="btn btn-sm bg-danger-light"
                                                data-toggle="modal">
-                                                <i class="fe fe-trash"></i> Delete
+                                                <i class="fe fe-trash"></i> Eliminar
                                             </a>
                                         </div>
                                     </td>
@@ -75,7 +98,7 @@
         </button>
     </div>
     <div class="modal-body text-center">
-        Are you sure want to delete this Review?
+        Estás seguro de eliminar esta entrada?
         <div style="margin-top:25px">
             <button (click)="deleteTrans()" (mouseover)="btnColor()" class="btn btn-default" id="btn-yes" type="button">
                 Yes
@@ -84,5 +107,45 @@
                 No
             </button>
         </div>
+    </div>
+</ng-template>
+
+<ng-template #patient>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Paciente</h4>
+        <button (click)="modalRef.hide()" aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center">
+        Nombre: {{this.actualPat.nombre}}  <br>
+        Apellido: {{this.actualPat.apellido}} <br>
+        Dirección: {{this.actualPat.direccion}}<br>
+        Telefono: {{this.actualPat.telefono}}<br>
+        Rut: {{this.actualPat.rut}}
+    </div>
+</ng-template>
+
+<ng-template #aprobar>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Aprobar Domicilio</h4>
+        <button (click)="modalRef.hide()" aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body text-center">
+        Nombre: {{this.actualPat.nombre}}  <br>
+        Apellido: {{this.actualPat.apellido}} <br>
+        Dirección: {{this.actualPat.direccion}}<br>
+        Telefono: {{this.actualPat.telefono}}<br>
+        Rut: {{this.actualPat.rut}}<br>
+        Orden: {{this.actualPat.orden}} <br>
+        <button (click)="aprobarModel()" (mouseover)="btnColor()" class="btn btn-default" id="btn-yes" type="button">
+            Aprobar
+        </button>
+        <button (click)="decline()" (mouseover)="btnColorNo()" class="btn btn-primary" id="btn-no" type="button">
+            Volver
+        </button>
     </div>
 </ng-template>

@@ -12,6 +12,9 @@ import { DomiciliosComponent } from './domicilios/domicilios.component';
 import { AgmCoreModule } from '@agm/core';
 import {Daterangepicker} from "ng2-daterangepicker";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         }),
         Daterangepicker,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

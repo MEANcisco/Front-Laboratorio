@@ -64,8 +64,10 @@
                                 <div *ngIf="!auth.isLoggedIn" class="exist-customer">Es necesario acceder para esta
                                     solicitud. <a [routerLink]="'/login-page'">Click para acceder</a></div>
                                 <div *ngIf="auth.isLoggedIn" class="submit-section mt-4">
-                                    <a (click)="booking()" class="btn btn-primary submit-btn"
-                                       type="submit">Confirmar</a>
+                                  <!--  <a (click)="booking()" class="btn btn-primary submit-btn"
+                                       type="submit">Confirmar</a>  -->
+                                    <button (click)="booking()" style="width: 25%" mat-raised-button color="primary">Confirmar</button>
+
                                 </div>
                             </div>
                             <!-- /Personal Information -->
@@ -102,7 +104,7 @@
                             <div class="booking-item-wrap">
                                 <ul class="booking-date">
                                     <li>Fecha <span>{{req.exaData.day | date: 'M/d/yy'}}</span></li>
-                                    <li>Hora <span>{{req.exaData.day | date: 'h:mm a' : '+0'}}</span></li>
+                                    <li>Hora <span>{{req.exaData.day | date: 'h:mm a'}}</span></li>
                                 </ul>
 
                             </div>

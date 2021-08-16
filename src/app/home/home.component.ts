@@ -1,6 +1,6 @@
 import {ToastrService} from 'ngx-toastr';
 import {ReqAppointService} from './../services/req-appoint.service';
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
 import {CommonServiceService} from '../common-service.service';
 import {FormControl} from '@angular/forms';
@@ -8,6 +8,8 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {SlickCarouselComponent} from 'ngx-slick-carousel';
 import * as moment from 'moment';
+import {MatCalendarCellClassFunction} from '@angular/material/datepicker';
+import {FiredatabaseService} from '../services/firedatabase.service';
 declare const $: any;
 
 export interface Doctors {
@@ -22,10 +24,26 @@ export interface Doctors {
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'],
-    // encapsulation : ViewEncapsulation.None
+    encapsulation : ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
+
+    constructor(
+        public fs: FiredatabaseService,
+        public router: Router,
+        public commonService: CommonServiceService,
+        public reqapp: ReqAppointService,
+        private toastr: ToastrService
+    ) {
+        this.filteredEmployee = this.employeeCtrl.valueChanges.pipe(
+            startWith(''),
+            map((employee) =>
+                employee ? this._filterEmployees(employee) : this.doctors.slice()
+            )
+        );
+    }
     today;
+
     selectex;
     datex;
     minDate = new Date(2000, 0, 1);
@@ -284,7 +302,6 @@ export class HomeComponent implements OnInit {
                 'Lorem Ipsum is simply dummy text  the printing and typesetting industry.',
         },
     ];
-
     isapres = [
         {
             isapre: 'Banmedica',
@@ -315,26 +332,38 @@ export class HomeComponent implements OnInit {
             url: 'https://www.consalud.cl/viveconsalud/servicios-para-ti/servicios-bonos-web.html'
         },
     ];
-    constructor(
-        public router: Router,
-        public commonService: CommonServiceService,
-        public reqapp: ReqAppointService,
-        private toastr: ToastrService
-    ) {
-        this.filteredEmployee = this.employeeCtrl.valueChanges.pipe(
-            startWith(''),
-            map((employee) =>
-                employee ? this._filterEmployees(employee) : this.doctors.slice()
-            )
-        );
-    }
 
+    CalenDates = [];
+    dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
+        // Only highligh dates inside the month view.
+        if (view === 'month') {
+            const date = cellDate.getDate();
+            // Highlight the 1st and 20th day of each month.
+            console.log(moment(cellDate).format('L'));
+            return (this.CalenDates.includes(moment(cellDate).format('L'))) ? 'example-custom-date-class' : '';
+        }
+        return '';
+    }
     openelement(open) {
         window.open(open);
     }
 
     async ngOnInit() {
         // Slick Slider
+
+        this.fs.getCalendar()
+            .subscribe(
+                (calendarSnap: any) => {
+                    calendarSnap.forEach( v => {
+                        const x = moment(v.payload.doc.data().start).format('L');
+                        console.log(x);
+                        this.CalenDates.push(x);
+                    });
+                }
+            );
+
+
+
         const today = new Date();
         let dd: any = today.getDate();
         let mm: any = today.getMonth() + 1; // January is 0!
@@ -346,7 +375,7 @@ export class HomeComponent implements OnInit {
             mm = '0' + mm;
         }
         this.today = yyyy + '-' + mm + '-' + (dd + 1);
-        document.getElementById('datefield')
+       /* document.getElementById('datefield')
             .setAttribute('max', yyyy + '-' + mm + '-' + (dd + 2));
 
         document.getElementById('datefield')
@@ -355,7 +384,7 @@ export class HomeComponent implements OnInit {
         document.getElementById('datefield')
             .setAttribute('min', yyyy + '-' + mm + '-' + (dd + 5));
         document.getElementById('datefield')
-            .setAttribute('max', yyyy + '-' + mm + '-' + (dd + 6));
+            .setAttribute('max', yyyy + '-' + mm + '-' + (dd + 6));*/
         const currentYear = moment().year();
 
         // this.examenes.forEach(
@@ -433,57 +462,6 @@ export class HomeComponent implements OnInit {
         this.getblogs();
 
         // User's voice slider
-        $('.testi-slider').each(function() {
-            const $show = $(this).data('show');
-            const $arr = $(this).data('arrow');
-            const $dots = !$arr;
-            let $m_show = $show;
-            if ($show === 3) {
-                $m_show = $show - 1;
-            }
-            $(this).slick({
-                slidesToShow: $show,
-                slidesToScroll: 1,
-                arrows: $arr,
-                autoplay: false,
-                autoplaySpeed: 6000,
-                adaptiveHeight: true,
-                prevArrow:
-                    '<button type="button" class="prev-nav"><i class="icon ion-ios-arrow-back"></i></button>',
-                nextArrow:
-                    '<button type="button" class="next-nav"><i class="icon ion-ios-arrow-forward"></i></button>',
-                responsive: [
-                    {
-                        breakpoint: 991,
-                        settings: {
-                            slidesToShow: $m_show,
-                            slidesToScroll: 1,
-                            infinite: true,
-                            arrows: $arr,
-                            dots: $dots,
-                        },
-                    },
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                            arrows: false,
-                            dots: true,
-                        },
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                            arrows: false,
-                            dots: true,
-                        },
-                    },
-                ],
-            });
-        });
     }
 
     next() {

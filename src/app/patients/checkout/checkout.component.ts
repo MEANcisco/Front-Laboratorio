@@ -5,6 +5,7 @@ import {ToastrService} from 'ngx-toastr';
 import {AuthService} from 'src/app/services/auth.service';
 import {ReqAppointService} from 'src/app/services/req-appoint.service';
 import {CommonServiceService} from './../../common-service.service';
+import {FiredatabaseService} from '../../services/firedatabase.service';
 
 @Component({
     selector: 'app-checkout',
@@ -24,11 +25,9 @@ export class CheckoutComponent implements OnInit {
 
     constructor(
         public req: ReqAppointService,
-        private router: Router,
-        private route: ActivatedRoute,
         public commonService: CommonServiceService,
-        private toastr: ToastrService,
-        public auth: AuthService
+        public auth: AuthService,
+        private fs: FiredatabaseService
     ) {
     }
 
@@ -68,6 +67,8 @@ export class CheckoutComponent implements OnInit {
     }
 
     booking() {
+        this.req.appObj.disponible = false;
+        this.fs.updateCal(this.req.appObj.idDoc, this.req.appObj);
         this.req.postAppoint();
     }
 }

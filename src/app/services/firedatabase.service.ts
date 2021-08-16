@@ -16,4 +16,8 @@ export class FiredatabaseService {
   public getCalendar() {
     return this.fs.collection('calendar').snapshotChanges();
   }
+
+  public updateCal(documentId: string, data: any) {
+    return this.fs.collection('calendar').doc(documentId).set(data);
+  }
 }

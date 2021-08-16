@@ -163,8 +163,15 @@ export class CommonServiceService {
     getDomicilio() {
         return this.http.get(this.SERVER_URL + 'domicilios');
     }
+
+    updateDomicilio(item) {
+        return this.http.put(this.SERVER_URL + 'domicilios/' + item.id, {aprobado: true});
+    }
     createDomicilio(item) {
         return this.http.post(this.SERVER_URL + 'domicilios', item);
+    }
+    getDomicilios() {
+        return this.http.get(this.SERVER_URL + 'domicilios');
     }
     createComment(params) {
         return this.http.post(this.SERVER_URL + 'comments', params);

@@ -13,8 +13,19 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     @ViewChild(DataTableDirective)
     public dtElement: DataTableDirective;
     public dtOptions: DataTables.Settings = {};
+    aprob: any = {};
     public dtTrigger: Subject<any> = new Subject();
     modalRef: BsModalRef;
+    actualItem;
+    actualPat = {
+        id: '',
+        nombre: '',
+    apellido: '',
+    direccion: '',
+    rut: '',
+    telefono: '', orden: ''
+
+    };
     transactionsList: any = [];
     errorMessage: string;
     id;
@@ -36,6 +47,33 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
     deleteModal(template: TemplateRef<any>, trans) {
         this.id = trans.id;
+        this.modalRef = this.modalService.show(template, {
+            class: 'modal-sm modal-dialog-centered',
+        });
+    }
+
+    aprobarModal(template: TemplateRef<any>, obj, trans) {
+        this.actualPat = obj;
+        this.aprob = trans;
+        console.log(trans);
+        this.modalRef = this.modalService.show(template, {
+            class: 'modal-sm modal-dialog-centered',
+        });
+    }
+
+
+    aprobarModel() {
+        this.aprob.aprobado = true;
+        this.commonService.updateDomicilio(this.aprob)
+            .subscribe(
+                v => {
+                    console.log(v);
+                }
+            );
+        this.getTransactions();
+    }
+    patientModal(template: TemplateRef<any>, trans) {
+        this.actualPat = trans;
         this.modalRef = this.modalService.show(template, {
             class: 'modal-sm modal-dialog-centered',
         });
@@ -76,15 +114,16 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     }
 
     getTransactions() {
-        this.commonService.getTransactions().subscribe(
+        this.commonService.getDomicilios().subscribe(
             (res) => {
                 this.transactionsList = res;
+                console.log(res);
                 // $(function () {
                 //   $("table").DataTable();
                 // });
                 this.dtTrigger.next();
             },
-            (error) => (this.errorMessage = <any>error)
+            (error) => (this.errorMessage = (error as any))
         );
     }
 

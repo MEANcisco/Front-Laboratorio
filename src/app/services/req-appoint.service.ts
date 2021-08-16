@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import axios from 'axios';
 import {AuthService} from './auth.service';
-import {Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable({
     providedIn: 'root'
@@ -10,9 +10,18 @@ import {ToastrService} from "ngx-toastr";
 export class ReqAppointService {
     exaData = {
         day: '',
-        examen: 0
+        tercero: false,
+        examen: 0,
+        thuser: {
+            direccion: '',
+            rut: '',
+            telefono: '',
+            nombre: '',
+            apellido: ''
+        }
     };
 
+    appObj;
     getExReq = axios.create({
         baseURL: 'https://api.reservas-lab.ml/examenes',
         timeout: 200000,
@@ -80,7 +89,8 @@ export class ReqAppointService {
             valor: 'texto prueba',
             status: 'Pendiente',
             appoint: this.exaData.day,
-            users_permissions_user: this.user.currentUser.id
+            users_permissions_user: this.user.currentUser.id,
+            thuser: this.exaData.thuser
         })
             .then(
                 data => {
