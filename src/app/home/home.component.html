@@ -69,10 +69,10 @@
         <div class="row">
                 <div class="profile-widget col-lg-4">
                     <h3 style="text-align: center;">Fonasa</h3>
-                    <div class="test-content">
+                    <!--<div class="test-content">
                         <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
                             graphic or web designs. The passage is attributed.</p>
-                    </div>
+                    </div>-->
                     <div class="test-image d-flex align-items-center">
 
                         <div class="test-users">
@@ -89,10 +89,10 @@
                 <div class="profile-widget col-lg-4">
                     <h3 style="text-align: center;">Isapre</h3>
 
-                    <div class="test-content">
+                   <!-- <div class="test-content">
                         <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print,
                             graphic or web designs. The passage is attributed.</p>
-                    </div>
+                    </div> -->
                     <div class="btn-group centered" style="width: 60%">
                         <button aria-expanded="false" style="display: block;
   margin-left: 50%;
@@ -112,17 +112,10 @@
                     <div class="test-content">
                         <p>Si realizar tramites en linea no es lo tuyo, puedes enviar tu solicitud y lo hacemos por usted, es necesario que rellene un simple formulario con sus datos y nosotros le enviaremos el bono en breve.</p>
                     </div>
-                    <div class="test-image d-flex align-items-center">
-                        <div class="test-profile">
-                            <a [routerLink]="'patients/doctor-profile'">
-                                <img alt="User Image" class="img-fluid" src="assets/img/patients/patient.jpg">
-                            </a>
-                        </div>
-                        <div class="test-users">
-                            <h3>Morfyn Henning</h3>
-                            <p class="mb-0">Profession</p>
-                        </div>
-                    </div>
+                    <a (click)="openelement('mailto:administracion@laboratorioaleman.cl?subject=Compra%20Bono%20Imed')" class="btn-pink" style="color: azure;  display: block;
+  width: 100%;">
+                        Ir a Compra de bonos
+                        <i class="fas fa-arrow-right"></i></a>
 
                 </div>
 
